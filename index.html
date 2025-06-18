@@ -87,8 +87,10 @@
             max-height: 0; /* Initial state for animation */
             opacity: 0; /* Initial state for animation */
             overflow: hidden;
-            /* Increased duration for a smoother "gliding" effect */
-            transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out, padding 0.7s ease-in-out;
+            /* Transition for opening/closing, adjusted duration for smoother effect */
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out, padding 0.5s ease-in-out;
+            display: block; /* Ensure block display for vertical stacking */
+            padding: 0; /* Ensures padding transition from 0 */
         }
         details[open] .accordion-content {
             max-height: 500px; /* Sufficiently large to cover content */
@@ -172,13 +174,18 @@
             border-radius: 9999px; /* fully rounded */
             font-size: 0.875rem; /* text-sm */
             font-weight: 500; /* font-medium */
-            white-space: nowrap;
+            white-space: nowrap; /* Keep text on one line */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
             transition: all 0.3s ease-in-out;
             cursor: default;
-            display: inline-flex; /* for better alignment */
-            align-items: center;
-            justify-content: center;
+            display: block; /* Make each tag a block element to stack vertically */
+            width: fit-content; /* Make tag width fit content */
+            max-width: 100%; /* Ensure it doesn't overflow parent horizontally initially */
+            overflow-x: auto; /* Allow horizontal scrolling within the tag if content is too long */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            margin-bottom: 0.5rem; /* Space between vertically stacked tags */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
         }
 
         /* Color variations for different tag types */
@@ -264,39 +271,39 @@
         <div class="mb-8 overflow-x-auto whitespace-nowrap pb-4 scrollbar-hide -mx-4">
             <div class="inline-flex space-x-4 px-4">
                 <!-- Facebook Card -->
-                <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
+                <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
                     <!-- Facebook SVG Icon -->
-                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-14 h-14 mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 12C22 6.477 17.523 2 12 2S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.875V14.808h-2.92V12h2.92V9.704c0-2.89 1.625-4.483 4.363-4.483 1.257 0 2.345.223 2.651.323v2.867h-1.79c-1.401 0-1.676.668-1.676 1.642V12h3.22l-.527 2.808H14.07V21.875C18.343 21.128 22 16.991 22 12z"/>
                     </svg>
                     <span class="font-semibold text-sm">פייסבוק</span>
                 </a>
                 <!-- WhatsApp Card - Now using the provided image URL -->
-                <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-green-400 to-green-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
+                <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-green-400 to-green-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
                     <!-- WhatsApp Image Icon (Updated) -->
-                    <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="Whatsapp Icon" class="w-16 h-16 mb-2 object-contain">
+                    <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="" class="w-14 h-14 mb-1 object-contain">
                     <span class="font-semibold text-sm">ווטסאפ</span>
                 </a>
                 <!-- LinkedIn Card -->
-                <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
-                    <!-- LinkedIn SVG Icon -->
-                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
+                    <!-- LinkedIn SVG Icon - Changed fill color to currentColor to inherit text-white -->
+                    <svg class="w-14 h-14 mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.305-.022-2.986-1.823-2.986-1.828 0-2.105 1.423-2.105 2.89v5.665h-3.554V9.012h3.418v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.463v6.222zM7.948 6.328c-.004-1.748-1.481-3.213-3.264-3.213-1.758 0-3.176 1.465-3.176 3.213 0 1.764 1.417 3.213 3.167 3.213h.01c1.78-.009 3.263-1.465 3.264-3.213zm-3.554 14.124H1.844V9.012h3.55V20.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.453c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.208 0 22.225 0z"/>
                     </svg>
                     <span class="font-semibold text-sm">לינקדאין</span>
                 </a>
                 <!-- Phone Card -->
-                <a href="tel:+972529252015" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-purple-400 to-purple-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
+                <a href="tel:+972529252015" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-purple-400 to-purple-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
                     <!-- Phone SVG Icon -->
-                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-14 h-14 mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.01 15.38C18.79 15.38 17.58 15.19 16.48 14.82C16.14 14.71 15.76 14.8 15.49 15.08L13.19 17.38C10.59 16.03 8.35 13.79 7 11.19L9.38 8.89C9.67 8.62 9.75 8.23 9.64 7.9C9.27 6.8 9.08 5.59 9.08 4.38C9.08 3.59 8.42 3 7.63 3H4.38C3.59 3 3 3.59 3 4.38C3 13.52 10.48 21 19.62 21C20.41 21 21 20.41 21 19.62V16.37C21 15.58 20.41 15.38 20.01 15.38Z"/>
                     </svg>
                     <span class="font-semibold text-sm">טלפון</span>
                 </a>
                 <!-- Gmail Card -->
-                <a href="mailto:ready4retire@gmail.com" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
+                <a href="mailto:ready4retire@gmail.com" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
                     <!-- Gmail SVG Icon -->
-                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-14 h-14 mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 6C22 5.44772 21.5523 5 21 5H3C2.44772 5 2 5.44772 2 6V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V6ZM20 7.23892L12.0712 13.1852C12.0205 13.2231 11.9795 13.2231 11.9288 13.1852L4 7.23892V17H20V7.23892ZM4 6.43137L11.9288 12.3776L20 6.43137L20 7.23892L11.9288 13.1852C11.9795 13.2231 12.0205 13.2231 11.9795 13.1852L4 7.23892L4 6.43137Z"/>
                     </svg>
                     <span class="font-semibold text-sm">מייל</span>
@@ -336,12 +343,14 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </summary>
-                <div class="accordion-content flex flex-wrap gap-2">
+                <!-- Each tag is a block element and will wrap content internally with overflow-x-auto -->
+                <div class="accordion-content">
                     <div class="base-tag-style tag-education-item">בעלת שלושה תארים באונ' בר אילן ובן גוריון</div>
                     <div class="base-tag-style tag-education-item">בוגרת לימודי דיני עבודה, חוק ומשפט</div>
                     <div class="base-tag-style tag-education-item">בוגרת לימודי תכנון פרישה bdo</div>
                     <div class="base-tag-style tag-education-item">בוגרת קורס דירקטורים למנהלות</div>
                     <div class="base-tag-style tag-education-item">מנחת קבוצות מוסמכת</div>
+                    <div class="base-tag-style tag-education-item">חשבת שכר בכירה</div>
                 </div>
             </details>
 
@@ -353,7 +362,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </summary>
-                <div class="accordion-content flex flex-wrap gap-2">
+                <!-- Each tag is a block element and will wrap content internally with overflow-x-auto -->
+                <div class="accordion-content">
                     <div class="base-tag-style tag-courses">אתגרי העסקה במאה 21</div>
                     <div class="base-tag-style tag-courses">תהליכי סיומי העסקה פיטורים התפטרות ופיצויי פיטורים</div>
                     <div class="base-tag-style tag-courses">תכנון תהליכי הפרישה בארגונים</div>
@@ -371,7 +381,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </summary>
-                <div class="accordion-content flex flex-wrap gap-2">
+                <!-- Each tag is a block element and will wrap content internally with overflow-x-auto -->
+                <div class="accordion-content">
                     <div class="base-tag-style tag-courses">אתגרי הפרישה בעידן 100 שנות חיים</div>
                     <div class="base-tag-style tag-courses">הכנה רגשית לפרישה</div>
                     <div class="base-tag-style tag-courses">חשיבות תכנון פיננסי בפרישה</div>
@@ -421,6 +432,10 @@
                 <div class="base-tag-style tag-employers">ויצו</div>
                 <div class="base-tag-style tag-employers">אלון תבור חברת חשמל</div>
                 <div class="base-tag-style tag-employers">עיריית הרצליה</div>
+                <div class="base-tag-style tag-employers">גמלאי בנק דיסקונט</div>
+                <div class="base-tag-style tag-employers">חברת משוב</div>
+                <div class="base-tag-style tag-employers">Univercity שלטון מקומי</div>
+                <div class="base-tag-style tag-employers">משרד הבריאות חיפה</div>
             </div>
         </div>
 
@@ -434,9 +449,9 @@
             </a>
             <!-- WhatsApp Card (Small) -->
             <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="small-social-card bg-gradient-to-br from-green-400 to-green-500 text-white hover-effect">
-                <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="Whatsapp Icon" class="object-contain">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="" class="object-contain">
             </a>
-            <!-- LinkedIn Card (Small) -->
+            <!-- LinkedIn Card (Small) - Changed fill color to currentColor to inherit text-white -->
             <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="small-social-card bg-gradient-to-br from-indigo-400 to-indigo-500 text-white hover-effect">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.305-.022-2.986-1.823-2.986-1.828 0-2.105 1.423-2.105 2.89v5.665h-3.554V9.012h3.418v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.463v6.222zM7.948 6.328c-.004-1.748-1.481-3.213-3.264-3.213-1.758 0-3.176 1.465-3.176 3.213 0 1.764 1.417 3.213 3.167 3.213h.01c1.78-.009 3.263-1.465 3.264-3.213zm-3.554 14.124H1.844V9.012h3.55V20.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.453c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.208 0 22.225 0z"/>
