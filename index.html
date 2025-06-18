@@ -15,8 +15,6 @@
             font-family: 'Inter', sans-serif;
             direction: rtl; /* Text direction from right to left */
             text-align: right; /* Align text to the right */
-            /* Removed overflow: hidden; from html, body */
-            /* Removed fixed height from html, body */
         }
         body {
             background: linear-gradient(to bottom right, #e0f2fe, #e9d5ff); /* Gradient background */
@@ -141,6 +139,14 @@
         .image-gallery-container img:hover {
             transform: scale(1.05); /* Slightly enlarge on hover */
         }
+        /* Added style for the full-width header image */
+        .header-image {
+            width: 100%; /* Full width of its container */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 150px; /* Optional: limit max height */
+            object-fit: contain; /* Ensure the entire image is visible, not cropped */
+            margin-bottom: 1.5rem; /* Space below the image */
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-100 to-purple-200 h-screen flex items-center justify-center p-4">
@@ -148,9 +154,12 @@
     <div class="bg-white rounded-3xl shadow-xl p-8 max-w-sm w-full mx-auto my-4 transition-all hover:scale-[1.02] duration-300 max-h-[95vh] overflow-y-auto">
         <!-- Title section -->
         <div class="text-center mb-6">
-            <h1 class="text-4xl font-extrabold text-purple-700 mb-2">מוכנים לפרישה</h1>
-            <h2 class="text-2xl font-bold text-gray-800 mb-1">חווה שוורץ שושני</h2>
-            <p class="text-md text-blue-600 font-semibold">הרצאות • קורסים • ליווי בפרישה</p>
+            <!-- Image for the main heading/logo - now spans full width -->
+            <img src="https://dl.dropboxusercontent.com/scl/fi/vffaentcxg34qdrevkjzz/.png?rlkey=la9ud3nxqaa0gi9xbxzb34blj&raw=1" alt="לוגו מוכנים לפרישה" class="header-image">
+            <!-- The following lines were removed as requested: -->
+            <!-- <h1 class="text-4xl font-extrabold text-purple-700 mb-2">מוכנים לפרישה</h1> -->
+            <!-- <h2 class="text-2xl font-bold text-gray-800 mb-1">חווה שוורץ שושני</h2> -->
+            <!-- <p class="text-md text-blue-600 font-semibold">הרצאות • קורסים • ליווי בפרישה</p> -->
         </div>
 
         <!-- Horizontal scrolling social cards -->
@@ -216,8 +225,11 @@
                 </summary>
                 <div class="accordion-content">
                     <p class="text-base">
-                        קוראים לי חוה שורץ שושני, בעלת ניסיון של שני עשורים בניהול משאבי אנוש בשירות קבע בצה"ל. בנוסף, זה כחמש שנים מנהלת פרישה בארגון ביטחוני גדול ומרצה לארגונים.
-                    </p>
+חוה שורץ שושני, מרצה ומומחית בתחום ההכנה לפרישה, מלווה ארגונים, עובדים ופורשים בדרכם לפרק החדש של חייהם – החיים שלאחר העבודה.
+
+לאורך שנים של עשייה במגזר הציבורי והעסקי, ליוויתי אלפי עובדים בתהליכי סיום עבודה, שינוי קריירה ופרישה, מתוך הבנה עמוקה של המורכבות הרגשית, המשפחתית והתעסוקתית שמביאה איתה תקופה זו.
+
+הקמתי את “מוכנים לפרישה עם חוה שורץ שושני” מתוך שליחות – להפוך את תהליך הפרישה ממשבר להזדמנות. אני משלבת ידע גרונטולוגי, ניסיון ניהולי, כלים פרקטיים ורגישות אנושית, ומאמינה שלכל אדם מגיעה פרישה עם משמעות, בהירות ובחירה                    </p>
                 </div>
             </details>
 
