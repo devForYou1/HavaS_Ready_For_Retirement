@@ -140,30 +140,21 @@
             transform: scale(1.05); /* Slightly enlarge on hover */
         }
         /* Style for text header */
-        .header-text-container {
-            font-size: 1rem; /* Base font size */
-            line-height: 1.5; /* Line height for readability */
-            color: #374151; /* Darker text for better contrast */
-            margin-bottom: 1.5rem; /* Space below the text */
-            text-align: justify; /* Justify text for a cleaner look */
-        }
-        .header-text-container p {
-            margin-bottom: 0.5rem; /* Space between paragraphs */
+        .header-image {
+            width: 100%; /* Full width of its container */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 150px; /* Optional: limit max height */
+            object-fit: contain; /* Ensure the entire image is visible, not cropped */
+            margin-bottom: 1.5rem; /* Space below the image */
         }
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-100 to-purple-200 h-screen flex items-center justify-center p-4">
 
     <div class="bg-white rounded-3xl shadow-xl p-8 max-w-sm w-full mx-auto my-4 transition-all hover:scale-[1.02] duration-300 max-h-[95vh] overflow-y-auto">
-        <!-- Title section - now with the provided text -->
+        <!-- Main Image at the top -->
         <div class="text-center mb-6">
-            <div class="header-text-container">
-                <p>חוה שורץ שושני, מרצה ומומחית בתחום ההכנה לפרישה, מלווה ארגונים, עובדים ופורשים בדרכם לפרק החדש של חייהם – החיים שלאחר העבודה.</p>
-                <br>
-                <p>לאורך שנים של עשייה במגזר הציבורי והעסקי, ליוויתי אלפי עובדים בתהליכי סיום עבודה, שינוי קריירה ופרישה, מתוך הבנה עמוקה של המורכבות הרגשית, המשפחתית והתעסוקתית שמביאה איתה תקופה זו.</p>
-                <br>
-                <p>הקמתי את “מוכנים לפרישה עם חוה שורץ שושני” מתוך שליחות – להפוך את תהליך הפרישה ממשבר להזדמנות. אני משלבת ידע גרונטולוגי, ניסיון ניהולי, כלים פרקטיים ורגישות אנושית, ומאמינה שלכל אדם מגיעה פרישה עם משמעות, בהירות ובחירה</p>
-            </div>
+            <img src="https://dl.dropboxusercontent.com/scl/fi/vk7rx40c2n5ikoblvb715/1.png?rlkey=ey54xu4tziot9cnc1aq81mjtx&raw=1" alt="לוגו מוכנים לפרישה" class="header-image">
         </div>
 
         <!-- Horizontal scrolling social cards -->
@@ -231,6 +222,23 @@
                     <p class="text-base">
                         קוראים לי חוה שורץ שושני, בעלת ניסיון של שני עשורים בניהול משאבי אנוש בשירות קבע בצה"ל. בנוסף, זה כחמש שנים מנהלת פרישה בארגון ביטחוני גדול ומרצה לארגונים.
                     </p>
+                </div>
+            </details>
+
+            <!-- New Accordion Item: About Chava (עם הטקסט הארוך) -->
+            <details class="group">
+                <summary class="flex justify-between items-center">
+                    <span>על חוה</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transform group-open:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </summary>
+                <div class="accordion-content">
+                    <p>חוה שורץ שושני, מרצה ומומחית בתחום ההכנה לפרישה, מלווה ארגונים, עובדים ופורשים בדרכם לפרק החדש של חייהם – החיים שלאחר העבודה.</p>
+                    <br>
+                    <p>לאורך שנים של עשייה במגזר הציבורי והעסקי, ליוויתי אלפי עובדים בתהליכי סיום עבודה, שינוי קריירה ופרישה, מתוך הבנה עמוקה של המורכבות הרגשית, המשפחתית והתעסוקתית שמביאה איתה תקופה זו.</p>
+                    <br>
+                    <p>הקמתי את “מוכנים לפרישה עם חוה שורץ שושני” מתוך שליחות – להפוך את תהליך הפרישה ממשבר להזדמנות. אני משלבת ידע גרונטולוגי, ניסיון ניהולי, כלים פרקטיים ורגישות אנושית, ומאמינה שלכל אדם מגיעה פרישה עם משמעות, בהירות ובחירה</p>
                 </div>
             </details>
 
