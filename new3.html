@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מוכנים לפרישה עם חוה שושני</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Set Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            direction: rtl; /* Text direction from right to left */
+            text-align: right; /* Align text to the right */
+            /* Removed overflow: hidden; from html, body */
+            /* Removed fixed height from html, body */
+        }
+        body {
+            background: linear-gradient(to bottom right, #e0f2fe, #e9d5ff); /* Gradient background */
+            min-height: 100vh; /* Ensure body is at least full viewport height */
+            display: block; /* Changed from flex to block to allow normal scrolling */
+            padding: 1rem; /* Overall padding for responsiveness */
+        }
+        /* Hover effect for buttons and links */
+        .hover-effect:hover {
+            transform: translateY(-4px); /* Slightly more pronounced lift */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+        }
+        .transition-all {
+            transition: all 0.4s ease-in-out; /* Slightly longer transition */
+        }
+
+        /* 3D card specific styles (for social cards) */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+        }
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg) translateZ(15px); /* More depth on hover */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Even stronger shadow */
+        }
+
+        /* Accordion specific styles */
+        details {
+            background-color: #ffffff; /* White background for accordion items */
+            border-radius: 1rem; /* rounded-xl for main card, make accordion slightly less rounded to distinguish */
+            margin-bottom: 0.75rem; /* space-y-3 */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md for closed state */
+            overflow: hidden; /* Ensures rounded corners on content */
+            transition: all 0.3s ease-in-out;
+            border: 1px solid #e0f2fe; /* Light blue border */
+        }
+
+        details[open] {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow when open */
+            background-color: #f0f9ff; /* Very light blue when open */
+            border-color: #93c5fd; /* Light blue border when open */
+        }
+
+        summary {
+            font-weight: 700; /* font-bold for summary */
+            padding: 1.25rem 1.5rem; /* More padding for a softer touch */
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #1f2937; /* Darker gray for better contrast */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        summary:hover {
+            background-color: #e0f2fe; /* Brighter hover state for summary */
+        }
+
+        summary::-webkit-details-marker {
+            display: none; /* Hide default marker in Webkit browsers */
+        }
+
+        .accordion-content {
+            padding: 0.75rem 1.5rem 1.5rem; /* More padding all around */
+            color: #374151; /* Slightly darker text for readability */
+            line-height: 1.75; /* leading-relaxed for better line spacing */
+            font-size: 1rem; /* text-base for content for better readability */
+        }
+        /* Icon for accordion summary */
+        .accordion-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        details[open] .accordion-icon {
+            transform: rotate(90deg); /* Rotate icon when open */
+            color: #2563eb; /* Blue color when open */
+        }
+
+        /* Custom scrollbar hide for aesthetic purposes */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Responsive video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-top: 1.5rem; /* More margin to separate from social cards */
+            margin-bottom: 1.5rem; /* More margin to separate from accordions */
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow for the video */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.75rem; /* rounded-lg */
+        }
+
+        /* Styles for the image gallery */
+        .image-gallery-container {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem; /* Space below the gallery */
+            padding-bottom: 0.5rem; /* For potential scrollbar visibility */
+        }
+        .image-gallery-container img {
+            width: 10rem; /* Fixed width for each image (adjust as needed) */
+            height: 8rem; /* Fixed height for each image (adjust as needed) */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for images */
+            transition: transform 0.2s ease-in-out;
+        }
+        .image-gallery-container img:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-purple-200 h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white rounded-3xl shadow-xl p-8 max-w-sm w-full mx-auto my-4 transition-all hover:scale-[1.02] duration-300 max-h-[95vh] overflow-y-auto">
+        <!-- Title section -->
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-extrabold text-purple-700 mb-2">מוכנים לפרישה</h1>
+            <h2 class="text-2xl font-bold text-gray-800 mb-1">חווה שוורץ שושני</h2>
+            <p class="text-md text-blue-600 font-semibold">הרצאות • קורסים • ליווי בפרישה</p>
+        </div>
+
+        <!-- Horizontal scrolling social cards -->
+        <div class="mb-8 overflow-x-auto whitespace-nowrap pb-4 space-x-4 scrollbar-hide">
+            <div class="inline-flex space-x-4">
+                <!-- Facebook Card -->
+                <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-3d hover-effect">
+                    <!-- Facebook SVG Icon -->
+                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 12C22 6.477 17.523 2 12 2S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.875V14.808h-2.92V12h2.92V9.704c0-2.89 1.625-4.483 4.363-4.483 1.257 0 2.345.223 2.651.323v2.867h-1.79c-1.401 0-1.676.668-1.676 1.642V12h3.22l-.527 2.808H14.07V21.875C18.343 21.128 22 16.991 22 12z"/>
+                    </svg>
+                    <span class="font-semibold text-sm">פייסבוק</span>
+                </a>
+                <!-- WhatsApp Card -->
+                <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-green-400 to-green-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-3d hover-effect">
+                    <!-- WhatsApp SVG Icon -->
+                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.04 2C7.38 2 3.65 5.72 3.65 10.38C3.65 11.96 4.14 13.43 4.97 14.73L3.06 21.04L9.58 19.14C10.82 19.78 12.04 20.12 13.29 20.12C17.65 20.12 21.37 16.4 21.37 12.04C21.37 7.38 17.65 3.65 12.04 3.65C12.04 3.65 12.04 3.65 12.04 3.65ZM16.6 14.54C16.41 14.94 16.09 15.03 15.6 15.03C15.11 15.03 14.39 14.88 14.07 14.28C13.75 13.68 13.03 12.72 12.89 12.37C12.75 12.02 12.3 12.08 11.98 12.08C11.66 12.08 11.19 12.08 10.74 12.72C10.29 13.36 9.49 14.16 8.92 14.43C8.35 14.7 7.91 14.56 7.63 14.16C7.35 13.76 6.84 12.65 6.84 11.45C6.84 10.25 7.23 9.77 7.63 9.47C8.03 9.17 8.52 9.09 8.87 9.09C9.22 9.09 9.5 9.17 9.77 9.47C10.04 9.77 10.43 10.25 10.57 10.45C10.71 10.65 10.84 10.82 10.97 11C11.1 11.18 11.23 11.35 11.36 11.52C11.49 11.69 11.62 11.86 11.75 12.03C11.88 12.2 12.01 12.37 12.14 12.54C12.27 12.71 12.4 12.88 12.53 13.05C12.66 13.22 12.79 13.39 12.92 13.56C13.05 13.73 13.18 13.9 13.31 14.07C13.44 14.24 13.57 14.41 13.7 14.58C13.83 14.75 13.96 14.92 14.09 15.09C14.22 15.26 14.35 15.43 14.48 15.6C14.61 15.77 14.74 15.94 14.87 16.11C15 16.28 15.13 16.45 15.26 16.62C15.39 16.79 15.52 16.96 15.65 17.13C15.78 17.3 15.91 17.47 16.04 17.64C16.17 17.81 16.3 17.98 16.43 18.15C16.56 18.32 16.69 18.49 16.82 18.66C16.95 18.83 17.08 19 17.21 19.17C17.34 19.34 17.47 19.51 17.6 19.68C17.73 19.85 17.86 20.02 17.99 20.19C18.12 20.36 18.25 20.53 18.38 20.7C18.51 20.87 18.64 21.04 18.77 21.21C18.9 21.38 19.03 21.55 19.16 21.72C19.29 21.89 19.42 22.06 19.55 22.23C19.68 22.4 19.81 22.57 19.94 22.74C20.07 22.91 20.2 23.08 20.33 23.25C20.46 23.42 20.59 23.59 20.72 23.76C20.85 23.93 20.98 24.1 21.11 24.27C21.24 24.44 21.37 24.61 21.5 24.78C21.63 24.95 21.76 25.12 21.89 25.29C22.02 25.46 22.15 25.63 22.28 25.8C22.41 25.97 22.54 26.14 22.67 26.31C22.8 26.48 22.93 26.65 23.06 26.82C23.19 26.99 23.32 27.16 23.45 27.33C23.58 27.5 23.71 27.67 23.84 27.84C23.97 28.01 24.1 28.18 24.23 28.35C24.36 28.52 24.49 28.69 24.62 28.86C24.75 29.03 24.88 29.2 25.01 29.37C25.14 29.54 25.27 29.71 25.4 29.88C25.53 30.05 25.66 30.22 25.79 30.39C25.92 30.56 26.05 30.73 26.18 30.9C26.31 31.07 26.44 31.24 26.57 31.41C26.7 31.58 26.83 31.75 26.96 31.92C27.09 32.09 27.22 32.26 27.35 32.43C27.48 32.6 27.61 32.77 27.74 32.94C27.87 33.11 28 33.28 28.13 33.45C28.26 33.62 28.39 33.79 28.52 33.96C28.65 34.13 28.78 34.3 28.91 34.47C29.04 34.64 29.17 34.81 29.3 34.98C29.43 35.15 29.56 35.32 29.69 35.49C29.82 35.66 29.95 35.83 30.08 36C30.21 36.17 30.34 36.34 30.47 36.51C30.6 36.68 30.73 36.85 30.86 37.02C30.99 37.19 31.12 37.36 31.25 37.53C31.38 37.7 31.51 37.87 31.64 38.04C31.77 38.21 31.9 38.38 32.03 38.55C32.16 38.72 32.29 38.89 32.42 39.06C32.55 39.23 32.68 39.4 32.81 39.57C32.94 39.74 33.07 39.91 33.2 40.08C33.33 40.25 33.46 40.42 33.59 40.59C33.72 40.76 33.85 40.93 33.98 41.1C34.11 41.27 34.24 41.44 34.37 41.61C34.5 41.78 34.63 41.95 34.76 42.12C34.89 42.29 35.02 42.46 35.15 42.63C35.28 42.8 35.41 42.97 35.54 43.14C35.67 43.31 35.8 43.48 35.93 43.65C36.06 43.82 36.19 43.99 36.32 44.16C36.45 44.33 36.58 44.5 36.71 44.67C36.84 44.84 36.97 45.01 37.1 45.18C37.23 45.35 37.36 45.52 37.49 45.69C37.62 45.86 37.75 46.03 37.88 46.2C38.01 46.37 38.14 46.54 38.27 46.71C38.4 46.88 38.53 47.05 38.66 47.22C38.79 47.39 38.92 47.56 39.05 47.73C39.18 47.9 39.31 48.07 39.44 48.24C39.57 48.41 39.7 48.58 39.83 48.75C39.96 48.92 40.09 49.09 40.22 49.26C40.35 49.43 40.48 49.6 40.61 49.77C40.74 49.94 40.87 50.11 41 50.28C41.13 50.45 41.26 50.62 41.39 50.79C41.52 50.96 41.65 51.13 41.78 51.3C41.91 51.47 42.04 51.64 42.17 51.81C42.3 51.98 42.43 52.15 42.56 52.32C42.69 52.49 42.82 52.66 42.95 52.83C43.08 53 43.21 53.17 43.34 53.34C43.47 53.51 43.6 53.68 43.73 53.85C43.86 54.02 43.99 54.19 44.12 54.36C44.25 54.53 44.38 54.7 44.51 54.87C44.64 55.04 44.77 55.21 44.9 55.38C45.03 55.55 45.16 55.72 45.29 55.89C45.42 56.06 45.55 56.23 45.68 56.4C45.81 56.57 45.94 56.74 46.07 56.91C46.2 57.08 46.33 57.25 46.46 57.42C46.59 57.59 46.72 57.76 46.85 57.93C46.98 58.1 47.11 58.27 47.24 58.44C47.37 58.61 47.5 58.78 47.63 58.95C47.76 59.12 47.89 59.29 48.02 59.46C48.15 59.63 48.28 59.8 48.41 59.97C48.54 60.14 48.67 60.31 48.8 60.48C48.93 60.65 49.06 60.82 49.19 60.99C49.32 61.16 49.45 61.33 49.58 61.5C49.71 61.67 49.84 61.84 49.97 62.01C50.1 62.18 50.23 62.35 50.36 62.52C50.49 62.69 50.62 62.86 50.75 63.03C50.88 63.2 51.01 63.37 51.14 63.54C51.27 63.71 51.4 63.88 51.53 64.05C51.66 64.22 51.79 64.39 51.92 64.56C52.05 64.73 52.18 64.9 52.31 65.07C52.44 65.24 52.57 65.41 52.7 65.58C52.83 65.75 52.96 65.92 53.09 66.09C53.22 66.26 53.35 66.43 53.48 66.6C53.61 66.77 53.74 66.94 53.87 67.11C54 67.28 54.13 67.45 54.26 67.62C54.39 67.79 54.52 67.96 54.65 68.13C54.78 68.3 54.91 68.47 55.04 68.64C55.17 68.81 55.3 68.98 55.43 69.15C55.56 69.32 55.69 69.49 55.82 69.66C55.95 69.83 56.08 70 56.21 70.17C56.34 70.34 56.47 70.51 56.6 70.68C56.73 70.85 56.86 71.02 56.99 71.19C57.12 71.36 57.25 71.53 57.38 71.7C57.51 71.87 57.64 72.04 57.77 72.21C57.9 72.38 58.03 72.55 58.16 72.72C58.29 72.89 58.42 73.06 58.55 73.23C58.68 73.4 58.81 73.57 58.94 73.74C59.07 73.91 59.2 74.08 59.33 74.25C59.46 74.42 59.59 74.59 59.72 74.76C59.85 74.93 59.98 75.1 60.11 75.27C60.24 75.44 60.37 75.61 60.5 75.78C60.63 75.95 60.76 76.12 60.89 76.29C61.02 76.46 61.15 76.63 61.28 76.8C61.41 76.97 61.54 77.14 61.67 77.31C61.8 77.48 61.93 77.65 62.06 77.82C62.19 77.99 62.32 78.16 62.45 78.33C62.58 78.5 62.71 78.67 62.84 78.84C62.97 79.01 63.1 79.18 63.23 79.35C63.36 79.52 63.49 79.69 63.62 79.86C63.75 80.03 63.88 80.2 64.01 80.37C64.14 80.54 64.27 80.71 64.4 80.88C64.53 81.05 64.66 81.22 64.79 81.39C64.92 81.56 65.05 81.73 65.18 81.9C65.31 82.07 65.44 82.24 65.57 82.41C65.7 82.58 65.83 82.75 65.96 82.92C66.09 83.09 66.22 83.26 66.35 83.43C66.48 83.6 66.61 83.77 66.74 83.94C66.87 84.11 67 84.28 67.13 84.45C67.26 84.62 67.39 84.79 67.52 84.96C67.65 85.13 67.78 85.3 67.91 85.47C68.04 85.64 68.17 85.81 68.3 85.98C68.43 86.15 68.56 86.32 68.69 86.49C68.82 86.66 68.95 86.83 69.08 87C69.21 87.17 69.34 87.34 69.47 87.51C69.6 87.68 69.73 87.85 69.86 88.02C69.99 88.19 70.12 88.36 70.25 88.53C70.38 88.7 70.51 88.87 70.64 89.04C70.77 89.21 70.9 89.38 71.03 89.55C71.16 89.72 71.29 89.89 71.42 90.06C71.55 90.23 71.68 90.4 71.81 90.57C71.94 90.74 72.07 90.91 72.2 91.08C72.33 91.25 72.46 91.42 72.59 91.59C72.72 91.76 72.85 91.93 72.98 92.1C73.11 92.27 73.24 92.44 73.37 92.61C73.5 92.78 73.63 92.95 73.76 93.12C73.89 93.29 74.02 93.46 74.15 93.63C74.28 93.8 74.41 93.97 74.54 94.14C74.67 94.31 74.8 94.48 74.93 94.65C75.06 94.82 75.19 94.99 75.32 95.16C75.45 95.33 75.58 95.5 75.71 95.67C75.84 95.84 75.97 96.01 76.1 96.18C76.23 96.35 76.36 96.52 76.49 96.69C76.62 96.86 76.75 97.03 76.88 97.2C77.01 97.37 77.14 97.54 77.27 97.71C77.4 97.88 77.53 98.05 77.66 98.22C77.79 98.39 77.92 98.56 78.05 98.73C78.18 98.9 78.31 99.07 78.44 99.24C78.57 99.41 78.7 99.58 78.83 99.75C78.96 99.92 79.09 100.09 79.22 100.26C79.35 100.43 79.48 100.6 79.61 100.77C79.74 100.94 79.87 101.11 80 101.28C80.13 101.45 80.26 101.62 80.39 101.79C80.52 101.96 80.65 102.13 80.78 102.3C80.91 102.47 81.04 102.64 81.17 102.81C81.3 102.98 81.43 103.15 81.56 103.32C81.69 103.49 81.82 103.66 81.95 103.83C82.08 104 82.21 104.17 82.34 104.34C82.47 104.51 82.6 104.68 82.73 104.85C82.86 105.02 82.99 105.19 83.12 105.36C83.25 105.53 83.38 105.7 83.51 105.87C83.64 106.04 83.77 106.21 83.9 106.38C84.03 106.55 84.16 106.72 84.29 106.89C84.42 107.06 84.55 107.23 84.68 107.4C84.81 107.57 84.94 107.74 85.07 107.91C85.2 108.08 85.33 108.25 85.46 108.42C85.59 108.59 85.72 108.76 85.85 108.93C85.98 109.1 86.11 109.27 86.24 109.44C86.37 109.61 86.5 109.78 86.63 109.95C86.76 110.12 86.89 110.29 87.02 110.46C87.15 110.63 87.28 110.8 87.41 110.97C87.54 111.14 87.67 111.31 87.8 111.48C87.93 111.65 88.06 111.82 88.19 111.99C88.32 112.16 88.45 112.33 88.58 112.5C88.71 112.67 88.84 112.84 88.97 113.01C89.1 113.18 89.23 113.35 89.36 113.52C89.49 113.69 89.62 113.86 89.75 114.03C89.88 114.2 90.01 114.37 90.14 114.54C90.27 114.71 90.4 114.88 90.53 115.05C90.66 115.22 90.79 115.39 90.92 115.56C91.05 115.73 91.18 115.9 91.31 116.07C91.44 116.24 91.57 116.41 91.7 116.58C91.83 116.75 91.96 116.92 92.09 117.09C92.22 117.26 92.35 117.43 92.48 117.6C92.61 117.77 92.74 117.94 92.87 118.11C93 118.28 93.13 118.45 93.26 118.62C93.39 118.79 93.52 118.96 93.65 119.13C93.78 119.3 93.91 119.47 94.04 119.64C94.17 119.81 94.3 119.98 94.43 120.15C94.56 120.32 94.69 120.49 94.82 120.66C94.95 120.83 95.08 121 95.21 121.17C95.34 121.34 95.47 121.51 95.6 121.68C95.73 121.85 95.86 122.02 95.99 122.19C96.12 122.36 96.25 122.53 96.38 122.7C96.51 122.87 96.64 123.04 96.77 123.21C96.9 123.38 97.03 123.55 97.16 123.72C97.29 123.89 97.42 124.06 97.55 124.23C97.68 124.4 97.81 124.57 97.94 124.74C98.07 124.91 98.2 125.08 98.33 125.25C98.46 125.42 98.59 125.59 98.72 125.76C98.85 125.93 98.98 126.1 99.11 126.27C99.24 126.44 99.37 126.61 99.5 126.78C99.63 126.95 99.76 127.12 99.89 127.29C100.02 127.46 100.15 127.63 100.28 127.8C100.41 127.97 100.54 128.14 100.67 128.31C100.8 128.48 100.93 128.65 101.06 128.82C101.19 128.99 101.32 129.16 101.45 129.33C101.58 129.5 101.71 129.67 101.84 129.84C101.97 130.01 102.1 130.18 102.23 130.35C102.36 130.52 102.49 130.69 102.62 130.86C102.75 131.03 102.88 131.2 103.01 131.37C103.14 131.54 103.27 131.71 103.4 131.88C103.53 132.05 103.66 132.22 103.79 132.39C103.92 132.56 104.05 132.73 104.18 132.9C104.31 133.07 104.44 133.24 104.57 133.41C104.7 133.58 104.83 133.75 104.96 133.92C105.09 134.09 105.22 134.26 105.35 134.43C105.48 134.6 105.61 134.77 105.74 134.94C105.87 135.11 106 135.28 16.15 13.91C15.89 13.62 15.65 13.33 15.4 13.04C15.15 12.75 14.9 12.46 14.65 12.17C14.4 11.88 14.15 11.59 13.9 11.3C13.65 11.01 13.4 10.72 13.15 10.43C12.9 10.14 12.65 9.85 12.4 9.56C12.15 9.27 11.9 8.98 11.65 8.69C11.4 8.4 11.15 8.11 10.9 7.82C10.65 7.53 10.4 7.24 10.15 6.95C9.9 6.66 9.65 6.37 9.4 6.08C9.15 5.79 8.9 5.5 8.65 5.21C8.4 4.92 8.15 4.63 7.9 4.34C7.65 4.05 7.4 3.76 7.15 3.47C6.9 3.18 6.65 2.89 6.4 2.6C6.15 2.31 5.9 2.02 5.65 1.73C5.4 1.44 5.15 1.15 4.9 0.86C4.65 0.57 4.4 0.28 4.15 0.09C4.01 0.05 3.86 0.02 3.71 0Z"></path>
+                    </svg>
+                    <span class="font-semibold text-sm">ווטסאפ</span>
+                </a>
+                <!-- LinkedIn Card -->
+                <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-3d hover-effect">
+                    <!-- LinkedIn SVG Icon -->
+                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.305-.022-2.986-1.823-2.986-1.828 0-2.105 1.423-2.105 2.89v5.665h-3.554V9.012h3.418v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.463v6.222zM7.948 6.328c-.004-1.748-1.481-3.213-3.264-3.213-1.758 0-3.176 1.465-3.176 3.213 0 1.764 1.417 3.213 3.167 3.213h.01c1.78-.009 3.263-1.465 3.264-3.213zm-3.554 14.124H1.844V9.012h3.55V20.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.453c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.208 0 22.225 0z"/>
+                    </svg>
+                    <span class="font-semibold text-sm">לינקדאין</span>
+                </a>
+                <!-- Phone Card -->
+                <a href="tel:+972529252015" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-purple-400 to-purple-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-3d hover-effect">
+                    <!-- Phone SVG Icon -->
+                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.01 15.38C18.79 15.38 17.58 15.19 16.48 14.82C16.14 14.71 15.76 14.8 15.49 15.08L13.19 17.38C10.59 16.03 8.35 13.79 7 11.19L9.38 8.89C9.67 8.62 9.75 8.23 9.64 7.9C9.27 6.8 9.08 5.59 9.08 4.38C9.08 3.59 8.42 3 7.63 3H4.38C3.59 3 3 3.59 3 4.38C3 13.52 10.48 21 19.62 21C20.41 21 21 20.41 21 19.62V16.37C21 15.58 20.41 15.38 20.01 15.38Z"/>
+                    </svg>
+                    <span class="font-semibold text-sm">טלפון</span>
+                </a>
+                <!-- Gmail Card -->
+                <a href="mailto:ready4retire@gmail.com" target="_blank" class="flex-shrink-0 w-32 h-32 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-3d hover-effect">
+                    <!-- Gmail SVG Icon -->
+                    <svg class="w-16 h-16 mb-2" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 6C22 5.44772 21.5523 5 21 5H3C2.44772 5 2 5.44772 2 6V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V6ZM20 7.23892L12.0712 13.1852C12.0205 13.2231 11.9795 13.2231 11.9288 13.1852L4 7.23892V17H20V7.23892ZM4 6.43137L11.9288 12.3776L20 6.43137L20 7.23892L11.9288 13.1852C11.9795 13.2231 12.0205 13.2231 11.9795 13.1852L4 7.23892L4 6.43137Z"/>
+                    </svg>
+                    <span class="font-semibold text-sm">מייל</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Video Container -->
+        <div class="video-container">
+            <div id="youtube-player"></div>
+        </div>
+
+        <!-- Additional Content Accordion Section -->
+        <div class="space-y-3">
+            <!-- Accordion Item 1: About Me -->
+            <details id="aboutMeAccordion" class="group">
+                <summary class="flex justify-between items-center">
+                    <span>על עצמי</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transform group-open:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </summary>
+                <div class="accordion-content">
+                    <p class="text-base">
+                        קוראים לי חוה שורץ שושני, בעלת ניסיון של שני עשורים בניהול משאבי אנוש בשירות קבע בצה"ל. בנוסף, זה כחמש שנים מנהלת פרישה בארגון ביטחוני גדול ומרצה לארגונים.
+                    </p>
+                </div>
+            </details>
+
+            <!-- Accordion Item 2: Courses for HR Managers -->
+            <details class="group">
+                <summary class="flex justify-between items-center">
+                    <span>קורסים למנהלי משאבי אנוש</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transform group-open:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </summary>
+                <div class="accordion-content">
+                    <ul class="list-disc list-inside text-base space-y-1">
+                        <li>הבנת עולם הפנסיה</li>
+                        <li>אתגרי העסקה ופרישה במאה ה-21</li>
+                        <li>התמודדות עם תהליכי סיום העסקה</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- Accordion Item 3: Courses for Retirees in the Organization -->
+            <details class="group">
+                <summary class="flex justify-between items-center">
+                    <span>קורסים לפורשים בארגון</span>
+                    <svg class="accordion-icon w-6 h-6 text-gray-500 transform group-open:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </summary>
+                <div class="accordion-content">
+                    <ul class="list-disc list-inside text-base space-y-1">
+                        <li>זכויות וזכאויות לקראת פרישה</li>
+                        <li>תכנון החיים שאחרי</li>
+                        <li>היערכות כלכלית לפרישה</li>
+                        <li>היערכות רגשית לפרישה</li>
+                        <li>העברה בינדורית בפרישה</li>
+                    </ul>
+                </div>
+            </details>
+            <!-- You can add more accordion items here following the same structure -->
+        </div>
+
+        <!-- Image Gallery Section -->
+        <div class="image-gallery-container overflow-x-auto whitespace-nowrap space-x-4 pb-2 scrollbar-hide">
+            <h3 class="text-xl font-bold text-gray-700 mb-4 text-center">גלריית תמונות</h3>
+            <div class="inline-flex space-x-4">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/1kaes86q79eab5wmom2vr/IMG_1901.jpeg?rlkey=6pwyhy8ch7ed60nzm1u5xoyyg&raw=1" alt="תמונה 1" class="flex-none rounded-lg shadow-md">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/kwi13zicscnufuoim553h/IMG_1897.jpeg?rlkey=sz2jae6puf15pna8500dh389v&raw=1" alt="תמונה 2" class="flex-none rounded-lg shadow-md">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/vaz1yb8cwpve3gs1gkvlo/IMG_1898.jpeg?rlkey=5d2o3gf8kt3a9dl3wmcemedlg&raw=1" alt="תמונה 3" class="flex-none rounded-lg shadow-md">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/tfbccqpgpr4uzwlsvlqw3/IMG_1899.jpeg?rlkey=8ma7brncddsscrsu8mz3d7z8s&raw=1" alt="תמונה 4" class="flex-none rounded-lg shadow-md">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/r0g94nfkh3ev1dx5b8lm4/IMG_1900.jpeg?rlkey=7tvotnu5lq2ccm4l1zpcxbs27&raw=1" alt="תמונה 5" class="flex-none rounded-lg shadow-md">
+                <!-- Add more images here following the same pattern -->
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube IFrame Player API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player; // Global variable to hold the YouTube player object
+        const videoId = 'b63I4v4cWsw'; // Extracted from your YouTube URL
+
+        // This function is called by the YouTube IFrame Player API when it's ready
+        function onYouTubeIframeAPIReady() {
+            // Create the YouTube player directly when the API is ready
+            player = new YT.Player('youtube-player', {
+                videoId: videoId,
+                playerVars: {
+                    'autoplay': 1, // Autoplay the video
+                    'controls': 1, // Show player controls
+                    'modestbranding': 1, // Hide YouTube logo
+                    'rel': 0 // Do not show related videos
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // Function called when the YouTube player is ready
+        function onPlayerReady(event) {
+            // Video is already set to autoplay by 'autoplay': 1 in playerVars
+        }
+    </script>
+</body>
+</html>
