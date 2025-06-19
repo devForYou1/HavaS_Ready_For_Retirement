@@ -97,9 +97,18 @@
             overflow-y: auto; /* Enable vertical scrolling for article content */
         }
         .accordion-content ul { /* Ensure lists within accordion are styled correctly */
-            list-style: none; /* Remove default list bullets */
-            padding: 0;
+            list-style: disc; /* Use standard disc bullets for lists */
+            padding-right: 1.5rem; /* Add padding for bullets in RTL */
             margin: 0;
+            color: var(--color-text-dark); /* Ensure list text color */
+        }
+        .accordion-content li {
+            margin-bottom: 0.5rem; /* Space between list items */
+            line-height: 1.5; /* Improve readability */
+        }
+        .accordion-content p {
+            margin-bottom: 0.5rem; /* Space below paragraphs */
+            line-height: 1.5; /* Improve readability */
         }
 
         /* Icon for accordion summary */
@@ -130,6 +139,7 @@
             margin-bottom: 1.5rem; /* More margin to separate from accordions */
             border-radius: 0.75rem; /* rounded-lg */
             box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Subtle shadow for the video */
+            background-color: #000; /* Placeholder background for video area */
         }
 
         .video-container iframe {
@@ -167,7 +177,7 @@
             margin-bottom: 1.5rem; /* Space below the image */
         }
 
-        /* New base tag style for consistency */
+        /* Base style for tags/items in accordions (used for employers) */
         .base-tag-style {
             padding: 0.5rem 1rem; /* Slightly more padding for a softer, modern look */
             border-radius: 9999px; /* fully rounded */
@@ -177,7 +187,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
             transition: all 0.3s ease-in-out;
             cursor: default;
-            display: block; /* Make each tag a block element to stack vertically */
+            display: block; /* Ensure block display for vertical stacking */
             width: fit-content; /* Make tag width fit content */
             max-width: 100%; /* Ensure it doesn't overflow parent horizontally initially */
             overflow-x: auto; /* Allow horizontal scrolling within the tag if content is too long */
@@ -187,17 +197,7 @@
             box-sizing: border-box; /* Include padding and border in the element's total width and height */
         }
 
-        /* Color variations for different tag types */
-        .tag-courses, .tag-education-item { /* Unified style for courses and education */
-            background-color: var(--color-light-blue-bg); /* Very light blue */
-            color: var(--color-dark-blue-black); /* Dark blue-black text */
-        }
-        .tag-courses:hover, .tag-education-item:hover {
-            background-color: #d6eeff; /* Slightly darker light blue on hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
-            transform: translateY(-2px); /* Subtle lift */
-        }
-
+        /* Color variations for employers tags */
         .tag-employers {
             background-color: #ffffff; /* Pure white */
             color: var(--color-dark-blue-black); /* Dark blue-black text */
@@ -209,14 +209,43 @@
             transform: translateY(-2px); /* Subtle lift */
         }
 
+        /* New card style for courses and lectures items */
+        .accordion-card-item {
+            background-color: #ffffff; /* White background for card */
+            border-radius: 0.75rem; /* Rounded corners */
+            padding: 1rem 1.25rem; /* Ample padding */
+            margin-bottom: 0.75rem; /* Space between cards */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            color: var(--color-text-dark); /* Dark text color */
+            font-size: 1rem; /* Base text size */
+            line-height: 1.6; /* Improved line height for readability */
+            transition: all 0.3s ease-in-out;
+            border: 1px solid var(--color-light-blue-bg); /* Light blue border */
+        }
+        .accordion-card-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Style for emotional support bullet points */
+        .emotional-support-item {
+            background-color: #f8fcff; /* Very light blue background, subtle difference */
+            border-left: 4px solid var(--color-mid-blue); /* Distinct left border */
+            border-radius: 0.5rem; /* Slightly less rounded than other cards */
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.6rem; /* Space between items */
+            color: var(--color-text-dark);
+            line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* Even subtler shadow */
+        }
+
+
         /* Update general text and header colors to adhere to palette */
         h3, summary {
             color: var(--color-dark-blue-black);
         }
-        .accordion-content p, .accordion-content .base-tag-style { /* Apply text color to individual tags, not just the parent ul/li */
-            color: var(--color-dark-blue-black); /* Ensure tags inherit correct text color */
-        }
-        .accordion-content p, .accordion-content ul {
+        /* Ensure all text within accordion content uses the text-dark color */
+        .accordion-content p, .accordion-content ul li {
             color: var(--color-text-dark);
         }
 
@@ -236,7 +265,31 @@
             opacity: 0; /* Start invisible */
         }
 
-        /* Small social card styling */
+        /* Small social card styling for top section */
+        .large-social-card {
+            width: 5rem; /* Smaller width for top cards */
+            height: 5rem; /* Smaller height for top cards */
+            border-radius: 1.25rem; /* rounded-2xl */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; /* Prevent shrinking in flex container */
+            flex-direction: column; /* Stack icon and text vertically */
+            /* Removed custom gradient to allow Tailwind's gradients to apply */
+        }
+        .large-social-card svg, .large-social-card img {
+            width: 2.5rem; /* Adjusted icon size for smaller cards */
+            height: 2.5rem; /* Adjusted icon size for smaller cards */
+            margin-bottom: 0.25rem; /* Small margin between icon and text */
+        }
+        .large-social-card span {
+            font-size: 0.75rem; /* text-xs, slightly smaller for small cards */
+            font-weight: 600; /* font-semibold */
+            display: block; /* Ensure text is visible */
+        }
+
+        /* Small social card styling for bottom section */
         .small-social-card {
             width: 3.5rem; /* Smaller width */
             height: 3.5rem; /* Smaller height */
@@ -246,6 +299,7 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0; /* Prevent shrinking in flex container */
+            /* Removed custom gradient to allow Tailwind's gradients to apply */
         }
         .small-social-card svg, .small-social-card img {
             width: 2.5rem; /* Smaller icons */
@@ -255,50 +309,70 @@
         .small-social-card span {
             display: none; /* Hide text label for small cards */
         }
+
+        /* Fade-in on scroll animation */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-scroll-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-100 to-purple-200 h-screen flex items-center justify-center p-4">
 
     <div class="bg-white rounded-3xl shadow-xl p-8 max-w-sm w-full mx-auto my-4 transition-all hover:scale-[1.02] duration-300 max-h-[95vh] overflow-y-auto main-card-animation">
         <div class="text-center mb-6">
-            <img src="https://dl.dropboxusercontent.com/scl/fi/vk7rx40c2n5ikoblvb715/1.png?rlkey=ey54xu4tziot9cnc1aq81mjtx&raw=1" alt="" class="header-image">
+            <img src="https://dl.dropboxusercontent.com/scl/fi/vk7rx40c2n5ikoblvb715/1.png?rlkey=ey54xu4tziot9cnc1aq81mjtx&raw=1" alt="לוגו חוה שושני" class="header-image" onerror="this.onerror=null;this.src='https://placehold.co/600x150/f0faff/201e43?text=Logo+Missing'">
         </div>
 
-        <div class="mb-8 overflow-x-auto whitespace-nowrap pb-4 scrollbar-hide -mx-4">
-            <div class="inline-flex space-x-6 px-6"> <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
-                    <svg class="w-14 h-14 mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <!-- Social Icons Section (Top) -->
+        <div class="mb-8 overflow-x-auto whitespace-nowrap pb-4 scrollbar-hide -mx-4 fade-in-on-scroll">
+            <div class="inline-flex gap-6 px-6">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="flex-shrink-0 large-social-card text-white card-social hover-effect bg-gradient-to-br from-blue-400 to-blue-500">
+                    <svg class="mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 12C22 6.477 17.523 2 12 2S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.875V14.808h-2.92V12h2.92V9.704c0-2.89 1.625-4.483 4.363-4.483 1.257 0 2.345.223 2.651.323v2.867h-1.79c-1.401 0-1.676.668-1.676 1.642V12h3.22l-.527 2.808H14.07V21.875C18.343 21.128 22 16.991 22 12z"/>
                     </svg>
-                    <span class="font-semibold text-sm">פייסבוק</span>
+                    <span>פייסבוק</span>
                 </a>
-                <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-green-400 to-green-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
-                    <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="" class="w-14 h-14 mb-1 object-contain">
-                    <span class="font-semibold text-sm">ווטסאפ</span>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="flex-shrink-0 large-social-card text-white card-social hover-effect bg-gradient-to-br from-green-400 to-green-500">
+                    <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="אייקון וואטסאפ" class="mb-1 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2f7f9e/FFFFFF?text=WA'">
+                    <span>ווטסאפ</span>
                 </a>
-                <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
-                    <img src="https://www.dropbox.com/scl/fi/vcfssezauvl7gsg3bwdu0/linkedin.png?rlkey=mwwqicx0nof4mw11n01ne5khq&raw=1" alt="" class="w-14 h-14 mb-1 object-contain">
-                    <span class="font-semibold text-sm">לינקדאין</span>
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="flex-shrink-0 large-social-card text-white card-social hover-effect bg-gradient-to-br from-indigo-400 to-indigo-500">
+                    <img src="https://dl.dropboxusercontent.com/scl/fi/vcfssezauvl7gsg3bwdu0/linkedin.png?rlkey=mwwqicx0nof4mw11n01ne5khq&raw=1" alt="אייקון לינקדאין" class="mb-1 object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2f7f9e/FFFFFF?text=LI'">
+                    <span>לינקדאין</span>
                 </a>
-                <a href="tel:+972529252015" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-purple-400 to-purple-500 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
-                    <svg class="w-14 h-14 mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <!-- Phone -->
+                <a href="tel:+972529252015" target="_blank" class="flex-shrink-0 large-social-card text-white card-social hover-effect bg-gradient-to-br from-purple-400 to-purple-500">
+                    <svg class="mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20.01 15.38C18.79 15.38 17.58 15.19 16.48 14.82C16.14 14.71 15.76 14.8 15.49 15.08L13.19 17.38C10.59 16.03 8.35 13.79 7 11.19L9.38 8.89C9.67 8.62 9.75 8.23 9.64 7.9C9.27 6.8 9.08 5.59 9.08 4.38C9.08 3.59 8.42 3 7.63 3H4.38C3.59 3 3 3.59 3 4.38C3 13.52 10.48 21 19.62 21C20.41 21 21 20.41 21 19.62V16.37C21 15.58 20.41 15.38 20.01 15.38Z"/>
                     </svg>
-                    <span class="font-semibold text-sm">טלפון</span>
+                    <span>טלפון</span>
                 </a>
-                <a href="mailto:ready4retire@gmail.com" target="_blank" class="flex-shrink-0 w-28 h-28 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl shadow-lg flex flex-col items-center justify-center text-white card-social hover-effect">
-                    <svg class="w-14 h-14 mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <!-- Email -->
+                <a href="mailto:ready4retire@gmail.com" target="_blank" class="flex-shrink-0 large-social-card text-white card-social hover-effect bg-gradient-to-br from-red-500 to-red-600">
+                    <svg class="mb-1" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M22 6C22 5.44772 21.5523 5 21 5H3C2.44772 5 2 5.44772 2 6V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V6ZM20 7.23892L12.0712 13.1852C12.0205 13.2231 11.9795 13.2231 11.9288 13.1852L4 7.23892V17H20V7.23892ZM4 6.43137L11.9288 12.3776L20 6.43137L20 7.23892L11.9288 13.1852C11.9795 13.2231 12.0205 13.2231 11.9795 13.1852L4 7.23892L4 6.43137Z"/>
                     </svg>
-                    <span class="font-semibold text-sm">מייל</span>
+                    <span>מייל</span>
                 </a>
             </div>
         </div>
 
-        <div class="video-container">
+        <!-- Video Container - Updated YouTube video ID -->
+        <div class="video-container fade-in-on-scroll">
             <div id="youtube-player"></div>
         </div>
 
-        <div class="space-y-3">
+        <div class="space-y-3 fade-in-on-scroll">
             <details id="aboutMeAccordion" class="group">
                 <summary class="flex justify-between items-center">
                     <span>על עצמי</span>
@@ -322,13 +396,16 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </summary>
+                <!-- Standard list (ul, li) for "Education" -->
                 <div class="accordion-content">
-                    <div class="base-tag-style tag-education-item">בעלת שלושה תארים באונ' בר אילן ובן גוריון</div>
-                    <div class="base-tag-style tag-education-item">בוגרת לימודי דיני עבודה, חוק ומשפט</div>
-                    <div class="base-tag-style tag-education-item">בוגרת לימודי תכנון פרישה bdo</div>
-                    <div class="base-tag-style tag-education-item">בוגרת קורס דירקטורים למנהלות</div>
-                    <div class="base-tag-style tag-education-item">מנחת קבוצות מוסמכת</div>
-                    <div class="base-tag-style tag-education-item">חשבת שכר בכירה</div>
+                    <ul>
+                        <li>בעלת שלושה תארים באונ' בר אילן ובן גוריון</li>
+                        <li>בוגרת לימודי דיני עבודה, חוק ומשפט</li>
+                        <li>בוגרת לימודי תכנון פרישה bdo</li>
+                        <li>בוגרת קורס דירקטורים למנהלות</li>
+                        <li>מנחת קבוצות מוסמכת</li>
+                        <li>חשבת שכר בכירה</li>
+                    </ul>
                 </div>
             </details>
 
@@ -339,13 +416,14 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </summary>
+                <!-- Items displayed as distinct cards -->
                 <div class="accordion-content">
-                    <div class="base-tag-style tag-courses">אתגרי העסקה במאה 21</div>
-                    <div class="base-tag-style tag-courses">תהליכי סיומי העסקה פיטורים התפטרות ופיצויי פיטורים</div>
-                    <div class="base-tag-style tag-courses">תכנון תהליכי הפרישה בארגונים</div>
-                    <div class="base-tag-style tag-courses">עולם הפנסיה</div>
-                    <div class="base-tag-style tag-courses">זכויות וזכאויות עובדים מבוגרים</div>
-                    <div class="base-tag-style tag-courses">תפקיד אנשי המשא"ן בליווי עובדים לקראת פרישה</div>
+                    <div class="accordion-card-item">אתגרי העסקה במאה 21</div>
+                    <div class="accordion-card-item">תהליכי סיומי העסקה פיטורים התפטרות ופיצויי פיטורים</div>
+                    <div class="accordion-card-item">תכנון תהליכי הפרישה בארגונים</div>
+                    <div class="accordion-card-item">עולם הפנסיה</div>
+                    <div class="accordion-card-item">זכויות וזכאויות עובדים מבוגרים</div>
+                    <div class="accordion-card-item">תפקיד אנשי המשא"ן בליווי עובדים לקראת פרישה</div>
                 </div>
             </details>
 
@@ -356,17 +434,18 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </summary>
+                <!-- Items displayed as distinct cards -->
                 <div class="accordion-content">
-                    <div class="base-tag-style tag-courses">אתגרי הפרישה בעידן 100 שנות חיים</div>
-                    <div class="base-tag-style tag-courses">הכנה רגשית לפרישה</div>
-                    <div class="base-tag-style tag-courses">חשיבות תכנון פיננסי בפרישה</div>
-                    <div class="base-tag-style tag-courses">קצבת אזרח ותיק</div>
-                    <div class="base-tag-style tag-courses">צוואות ירושות ייפוי כוח מתמשך</div>
-                    <div class="base-tag-style tag-courses">עולם קרנות הפנסיה (ותיקה חדשה ותקציבית)</div>
-                    <div class="base-tag-style tag-courses">העברה בינדורית בקופות הפנסיה</div>
-                    <div class="base-tag-style tag-courses">זכויות וזכאויות גיל שלישי</div>
-                    <div class="base-tag-style tag-courses">התמודדות עם שינוי</div>
-                    <div class="base-tag-style tag-courses">זכויות וזכאויות בעת סיום העסקה - כל מה שחשוב לדעת</div>
+                    <div class="accordion-card-item">אתגרי הפרישה בעידן 100 שנות חיים</div>
+                    <div class="accordion-card-item">הכנה רגשית לפרישה</div>
+                    <div class="accordion-card-item">חשיבות תכנון פיננסי בפרישה</div>
+                    <div class="accordion-card-item">קצבת אזרח ותיק</div>
+                    <div class="accordion-card-item">צוואות ירושות ייפוי כוח מתמשך</div>
+                    <div class="accordion-card-item">עולם קרנות הפנסיה (ותיקה חדשה ותקציבית)</div>
+                    <div class="accordion-card-item">העברה בינדורית בקופות הפנסיה</div>
+                    <div class="accordion-card-item">זכויות וזכאויות גיל שלישי</div>
+                    <div class="accordion-card-item">התמודדות עם שינוי</div>
+                    <div class="accordion-card-item">זכויות וזכאויות בעת סיום העסקה - כל מה שחשוב לדעת</div>
                 </div>
             </details>
 
@@ -377,43 +456,46 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </summary>
+                <!-- Items displayed as subtle card-like blocks -->
                 <div class="accordion-content">
-                    <p>כחלק מתהליך אחריות ארגונית ורווחת העובד, אני מציעה ליווי אישי ודיסקרטי לעובדים לקראת פרישה או שינוי כיוון.</p>
-                    <p>מעסיקים שמציעים את הליווי הזה מאותתים לעובדיהם שהם חשובים – גם ביציאה מהארגון, לא רק בכניסה.</p>
-                    <p>מה כולל הליווי:</p>
-                    <p>🔹 היכרות מעמיקה עם העובד – מה מניע אותו, מהם הערכים שחשובים לו, ואילו כיוונים מתאימים לו בהמשך הדרך</p>
-                    <p>🔹 מיפוי חששות ואתגרים – רגשיים, כלכליים, זהותיים וחברתיים</p>
-                    <p>🔹 בניית תוכנית פרישה אישית – חזון ברור, מטרות וצעדים פרקטיים לחיים שאחרי</p>
-                    <p>🔹 חיזוק תחושת מסוגלות וביטחון עצמי – התמודדות עם שינוי, עזיבת מסגרת, והגדרה מחודשת של זהות</p>
-                    <p>🔹 ליווי רגשי בפרידה – עיבוד חוויית הסיום והכנה לפרק הבא בחיים</p>
-                    <p>למה זה חשוב לארגון?</p>
-                    <p>✅ מאפשר פרידה מכבדת ותומכת</p>
-                    <p>✅ שומר על יחסי אמון לאורך זמן</p>
-                    <p>✅ מחזק מוניטין ארגוני כאחראי ואנושי</p>
-                    <p>✅ תורם להעברת ידע שקטה ומסודרת לדור הבא</p>
-                    <p>✅ מסייע לעובדים לפרוש בתחושת שלמות, ולא מתוך בלבול או נתק רגשי</p>
+                    <div class="emotional-support-item">כחלק מתהליך אחריות ארגונית ורווחת העובד, אני מציעה ליווי אישי ודיסקרטי לעובדים לקראת פרישה או שינוי כיוון.</div>
+                    <div class="emotional-support-item">מעסיקים שמציעים את הליווי הזה מאותתים לעובדיהם שהם חשובים – גם ביציאה מהארגון, לא רק בכניסה.</div>
+                    <div class="emotional-support-item">מה כולל הליווי:</div>
+                    <div class="emotional-support-item">🔹 היכרות מעמיקה עם העובד – מה מניע אותו, מהם הערכים שחשובים לו, ואילו כיוונים מתאימים לו בהמשך הדרך</div>
+                    <div class="emotional-support-item">🔹 מיפוי חששות ואתגרים – רגשיים, כלכליים, זהותיים וחברתיים</div>
+                    <div class="emotional-support-item">🔹 בניית תוכנית פרישה אישית – חזון ברור, מטרות וצעדים פרקטיים לחיים שאחרי</div>
+                    <div class="emotional-support-item">🔹 חיזוק תחושת מסוגלות וביטחון עצמי – התמודדות עם שינוי, עזיבת מסגרת, והגדרה מחודשת של זהות</div>
+                    <div class="emotional-support-item">🔹 ליווי רגשי בפרידה – עיבוד חוויית הסיום והכנה לפרק הבא בחיים</div>
+                    <div class="emotional-support-item">למה זה חשוב לארגון?</div>
+                    <div class="emotional-support-item">✅ מאפשר פרידה מכבדת ותומכת</div>
+                    <div class="emotional-support-item">✅ שומר על יחסי אמון לאורך זמן</div>
+                    <div class="emotional-support-item">✅ מחזק מוניטין ארגוני כאחראי ואנושי</div>
+                    <div class="emotional-support-item">✅ תורם להעברת ידע שקטה ומסודרת לדור הבא</div>
+                    <div class="emotional-support-item">✅ מסייע לעובדים לפרוש בתחושת שלמות, ולא מתוך בלבול או נתק רגשי</div>
                 </div>
             </details>
 
-            </div>
+        </div>
 
-        <div class="image-gallery-container overflow-x-auto whitespace-nowrap space-x-4 pb-2 scrollbar-hide">
+        <!-- Image Gallery -->
+        <div class="image-gallery-container overflow-x-auto whitespace-nowrap space-x-4 pb-2 scrollbar-hide fade-in-on-scroll">
             <h3 class="text-xl font-bold text-gray-700 mb-4 text-center">גלריית תמונות</h3>
-            <div class="inline-flex space-x-4 px-4"> <img src="https://dl.dropboxusercontent.com/scl/fi/1kaes86q79eab5wmom2vr/IMG_1901.jpeg?rlkey=6pwyhy8ch7ed60nzm1u5xoyyg&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://dl.dropboxusercontent.com/scl/fi/kwi13zicscnufuoim553h/IMG_1897.jpeg?rlkey=sz2jae6puf15pna8500dh389v&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://dl.dropboxusercontent.com/scl/fi/vaz1yb8cwpve3gs1gkvlo/IMG_1898.jpeg?rlkey=5d2o3gf8kt3a9dl3wmcemedlg&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://dl.dropboxusercontent.com/scl/fi/tfbccqpgpr4uzwlsvlqw3/IMG_1899.jpeg?rlkey=8ma7brncddsscrsu8mz3d7z8s&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://dl.dropboxusercontent.com/scl/fi/r0g94nfkh3ev1dx5b8lm4/IMG_1900.jpeg?rlkey=7tvotnu5lq2ccm4l1zpcxbs27&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://www.dropbox.com/scl/fi/mlodkcxfx0jio6trtdehr/WhatsApp-Image-2025-06-19-at-00.12.23.jpeg?rlkey=s64wpr0iptffw7cvtvysopjrj&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://www.dropbox.com/scl/fi/oo3lfxqc3j0sy38eg6pjw/WhatsApp-Image-2025-06-19-at-00.13.59.jpeg?rlkey=g0dmsspaxc7xm5m5qsjqv1xi6&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://www.dropbox.com/scl/fi/abjuxk3ad5mj1hcx23or1/WhatsApp-Image-2025-06-19-at-00.15.13.jpeg?rlkey=42zv1b2cnmb63t3manmuwht61&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://www.dropbox.com/scl/fi/y8prhs1ii7nagvifknu5w/WhatsApp-Image-2025-06-19-at-00.16.16.jpeg?rlkey=ftfmexeye554xkfp0ihfq3l9v&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://www.dropbox.com/scl/fi/bdjrg9whstrgzf18h7ovg/WhatsApp-Image-2025-06-19-at-00.17.43.jpeg?rlkey=mzkn99eje3ms7bs2cfi7avwm2&raw=1" alt="" class="flex-none rounded-lg shadow-md">
-                <img src="https://www.dropbox.com/scl/fi/nwvtyvohzoeaccza5otpx/WhatsApp-Image-2025-06-19-at-00.19.50.jpeg?rlkey=kz6t0ljpx5w8ttkcc3vyzm8i0&raw=1" alt="" class="flex-none rounded-lg shadow-md">
+            <div class="inline-flex gap-4 px-4">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/1kaes86q79eab5wmom2vr/IMG_1901.jpeg?rlkey=6pwyhy8ch7ed60nzm1u5xoyyg&raw=1" alt="תמונה של חוה שושני מרצה" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+1'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/kwi13zicscnufuoim553h/IMG_1897.jpeg?rlkey=sz2jae6puf15pna8500dh389v&raw=1" alt="קהל בהרצאה" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+2'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/vaz1yb8cwpve3gs1gkvlo/IMG_1898.jpeg?rlkey=5d2o3gf8kt3a9dl3wmcemedlg&raw=1" alt="חוה שושני מרצה" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+3'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/tfbccqpgpr4uzwlsvlqw3/IMG_1899.jpeg?rlkey=8ma7brncddsscrsu8mz3d7z8s&raw=1" alt="הרצאה בפרישה" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+4'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/r0g94nfkh3ev1dx5b8lm4/IMG_1900.jpeg?rlkey=7tvotnu5lq2ccm4l1zpcxbs27&raw=1" alt="קבוצת לומדים" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+5'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/mlodkcxfx0jio6trtdehr/WhatsApp-Image-2025-06-19-at-00.12.23.jpeg?rlkey=s64wpr0iptffw7cvtvysopjrj&raw=1" alt="צילום קבוצתי של משתתפים" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+6'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/oo3lfxqc3j0sy38eg6pjw/WhatsApp-Image-2025-06-19-at-00.13.59.jpeg?rlkey=g0dmsspaxc7xm5m5qsjqv1xi6&raw=1" alt="חוה שושני מציגה" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+7'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/abjuxk3ad5mj1hcx23or1/WhatsApp-Image-2025-06-19-at-00.15.13.jpeg?rlkey=42zv1b2cnmb63t3manmuwht61&raw=1" alt="פאנל מרצים" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+8'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/y8prhs1ii7nagvifknu5w/WhatsApp-Image-2025-06-19-at-00.16.16.jpeg?rlkey=ftfmexeye554xkfp0ihfq3l9v&raw=1" alt="משתתפי סדנה" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+9'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/bdjrg9whstrgzf18h7ovg/WhatsApp-Image-2025-06-19-at-00.17.43.jpeg?rlkey=mzkn99eje3ms7bs2cfi7avwm2&raw=1" alt="הרצאה לעובדים" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+10'">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/nwvtyvohzoeaccza5otpx/WhatsApp-Image-2025-06-19-at-00.19.50.jpeg?rlkey=kz6t0ljpx5w8ttkcc3vyzm8i0&raw=1" alt="חוה שושני בהרצאה" class="flex-none rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/160x128/f0faff/201e43?text=Image+11'">
             </div>
         </div>
 
-        <div class="mt-8">
+        <div class="mt-8 fade-in-on-scroll">
             <h3 class="text-xl font-bold text-gray-700 mb-4 text-center">מעסיקים שכבר הכירו אותי</h3>
             <div class="flex flex-wrap justify-center gap-2">
                 <div class="base-tag-style tag-employers">אוניברסיטת תל אביב</div>
@@ -440,25 +522,133 @@
             </div>
         </div>
 
-        <div class="mt-8 pt-4 border-t border-gray-200 flex justify-center space-x-2">
-            <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="small-social-card bg-gradient-to-br from-blue-400 to-blue-500 text-white hover-effect">
+        <!-- Bottom Social Icons Section -->
+        <div class="mt-8 pt-4 border-t border-gray-200 flex justify-center gap-2 fade-in-on-scroll">
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="small-social-card text-white hover-effect bg-gradient-to-br from-blue-400 to-blue-500">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22 12C22 6.477 17.523 2 12 2S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.875V14.808h-2.92V12h2.92V9.704c0-2.89 1.625-4.483 4.363-4.483 1.257 0 2.345.223 2.651.323v2.867h-1.79c-1.401 0-1.676.668-1.676 1.642V12h3.22l-.527 2.808H14.07V21.875C18.343 21.128 22 16.991 22 12z"/>
                 </svg>
             </a>
-            <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="small-social-card bg-gradient-to-br from-green-400 to-green-500 text-white hover-effect">
-                <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="" class="object-contain">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="small-social-card text-white hover-effect bg-gradient-to-br from-green-400 to-green-500">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="אייקון וואטסאפ" class="object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2f7f9e/FFFFFF?text=WA'">
             </a>
-            <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="small-social-card bg-gradient-to-br from-indigo-400 to-indigo-500 text-white hover-effect">
-                <img src="https://www.dropbox.com/scl/fi/vcfssezauvl7gsg3bwdu0/linkedin.png?rlkey=mwwqicx0nof4mw11n01ne5khq&raw=1" alt="" class="object-contain">
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="small-social-card text-white hover-effect bg-gradient-to-br from-indigo-400 to-indigo-500">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/vcfssezauvl7gsg3bwdu0/linkedin.png?rlkey=mwwqicx0nof4mw11n01ne5khq&raw=1" alt="אייקון לינקדאין" class="object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2f7f9e/FFFFFF?text=LI'">
             </a>
-            <a href="tel:+972529252015" target="_blank" class="small-social-card bg-gradient-to-br from-purple-400 to-purple-500 text-white hover-effect">
+            <!-- Phone -->
+            <a href="tel:+972529252015" target="_blank" class="small-social-card text-white hover-effect bg-gradient-to-br from-purple-400 to-purple-500">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M20.01 15.38C18.79 15.38 17.58 15.19 16.48 14.82C16.14 14.71 15.76 14.8 15.49 15.08L13.19 17.38C10.59 16.03 8.35 13.79 7 11.19L9.38 8.89C9.67 8.62 9.75 8.23 9.64 7.9C9.27 6.8 9.08 5.59 9.08 4.38C9.08 3.59 8.42 3 7.63 3H4.38C3.59 3 3 3.59 3 4.38C3 13.52 10.48 21 19.62 21C20.41 21 21 20.41 21 19.62V16.37C21 15.58 20.41 15.38 20.01 15.38Z"/>
                 </svg>
             </a>
-            <a href="mailto:ready4retire@gmail.com" target="_blank" class="small-social-card bg-gradient-to-br from-red-500 to-red-600 text-white hover-effect">
+            <!-- Email -->
+            <a href="mailto:ready4retire@gmail.com" target="_blank" class="small-social-card text-white hover-effect bg-gradient-to-br from-red-500 to-red-600">
                 <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22 6C22 5.44772 21.5523 5 21 5H3C2.44772 5 2 5.44772 2 6V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V6ZM20 7.23892L12.0712 13.1852C12.0205 13.2231 11.9795 13.2231 11.9288 13.1852L4 7.23892V17H20V7.23892ZM4 6.43137L11.9288 12.3776L20 6.43137L20 7.23892L11.9288 13.1852C11.9795 13.2231 12.0205 13.2231 11.9795 13.1852L4 7.23892L4 6.43137Z"/>
                 </svg>
             </a>
+        </div>
+    </div>
+
+    <script>
+        // Load the YouTube IFrame Player API asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        // This function is automatically called by the YouTube IFrame Player API when it's ready.
+        function onYouTubeIframeAPIReady() {
+            console.log("YouTube IFrame API is ready.");
+            try {
+                player = new YT.Player('youtube-player', {
+                    height: '360', // Default height, will be overridden by responsive CSS
+                    width: '640',  // Default width, will be overridden by responsive CSS
+                    videoId: 'b63I4v4cWsw', // Updated YouTube video ID
+                    playerVars: {
+                        'playsinline': 1,
+                        'autoplay': 1, // Autoplay enabled
+                        'mute': 1,     // Video muted for autoplay to work in most browsers
+                        'controls': 1, // Show video controls
+                        'modestbranding': 1, // Hide YouTube logo
+                        'rel': 0 // Do not show related videos at the end
+                    },
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onError': onPlayerError
+                    }
+                });
+                console.log("YouTube player initialized.");
+            } catch (e) {
+                console.error("Error initializing YouTube player:", e);
+                document.getElementById('youtube-player').innerHTML = '<p style="color: white; text-align: center; padding-top: 20px;">שגיאה בטעינת הוידאו. אנא נסה/י שוב מאוחר יותר.</p>';
+            }
+        }
+
+        function onPlayerReady(event) {
+            console.log("YouTube player is ready.");
+            // Since autoplay and mute are set in playerVars, explicitly playing here might not be necessary but good for fallback
+            if (player.isMuted() && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+                player.playVideo();
+            }
+        }
+
+        function onPlayerError(event) {
+            console.error("YouTube player error:", event.data);
+            let errorMessage = "אירעה שגיאה בטעינת הוידאו.";
+            switch(event.data) {
+                case 2:
+                    errorMessage = "מזהה הוידאו אינו תקין או הסרטון אינו קיים.";
+                    break;
+                case 100:
+                    errorMessage = "הסרטון אינו זמין.";
+                    break;
+                case 101:
+                case 150:
+                    errorMessage = "בעיות הרשאה: הסרטון אינו ניתן להטמעה.";
+                    break;
+                default:
+                    errorMessage = "שגיאה לא ידועה בטעינת הוידאו.";
+            }
+            document.getElementById('youtube-player').innerHTML = `<p style="color: white; text-align: center; padding-top: 20px;">${errorMessage}</p>`;
+        }
+
+
+        // Intersection Observer for fade-in-on-scroll effect
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollElements = document.querySelectorAll('.fade-in-on-scroll');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of the element must be visible to trigger
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-scroll-active');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            scrollElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add alt attributes to all images for accessibility and better SEO
+            const images = document.querySelectorAll('img:not([alt])');
+            images.forEach(img => {
+                if (!img.alt) {
+                    img.alt = 'תמונה'; // Generic alt text if none is provided
+                }
+            });
+        });
+    </script>
+</body>
+</html>
