@@ -91,10 +91,10 @@
             padding: 0; /* Ensures padding transition from 0 */
         }
         details[open] .accordion-content {
-            max-height: 500px; /* Sufficiently large to cover content */
+            max-height: fit-content; /* Allow content to open fully */
             opacity: 1;
             padding: 0.75rem 1.5rem 1.5rem; /* Re-apply padding when open */
-            overflow-y: auto; /* Enable vertical scrolling for article content */
+            overflow-y: visible; /* Allow content to be fully visible, no scrollbar */
         }
         .accordion-content ul { /* Ensure lists within accordion are styled correctly */
             list-style: disc; /* Use standard disc bullets for lists */
@@ -520,6 +520,7 @@
                 <div class="base-tag-style tag-employers">עיריית הרצליה</div>
                 <div class="base-tag-style tag-employers">גמלאי בנק דיסקונט</div>
                 <div class="base-tag-style tag-employers">חברת משוב</div>
+                <div class="base-tag-style tag-employers">Univercity שלטון מקומי</div>
                 <div class="base-tag-style tag-employers">משרד הבריאות חיפה</div>
             </div>
         </div>
