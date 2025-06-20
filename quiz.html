@@ -96,50 +96,27 @@
             animation: fadeInSlideUp 0.5s ease-out forwards;
         }
 
-        /* Custom style for social cards within the quiz result section */
-        .result-social-card {
-            width: 3.5rem; /* Smaller width for top cards to be circular */
-            height: 3.5rem; /* Smaller height for top cards to be circular */
+        /* Styling for social icons from g.html */
+        .social-icon-circle {
+            width: 3.5rem; /* Smaller width */
+            height: 3.5rem; /* Smaller height */
             border-radius: 9999px; /* Make them perfectly round */
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0; /* Prevent shrinking in flex container */
-            transition: all 0.3s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .result-social-card:hover {
-            transform: translateY(-4px); /* Slightly more pronounced lift */
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Stronger shadow */
-        }
-        .result-social-card svg, .result-social-card img {
-            width: 2.5rem; /* Smaller icons */
-            height: 2.5rem; /* Smaller icons */
-        }
-        .result-social-card span { /* Hidden text for these cards */
-            display: none;
-        }
-        .back-button {
-            display: block; /* Make it a block-level element */
-            width: fit-content; /* Adjust width to content */
-            margin: 2rem auto 0 auto; /* Center it and add vertical spacing */
-            padding: 0.8rem 1.5rem;
-            background-color: #4CAF50; /* Green color for back button */
-            color: white;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 0.75rem; /* Rounded corners */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
-            text-decoration: none; /* Remove underline for links */
-            font-size: 1rem;
-        }
-        .back-button:hover {
-            background-color: #45a049; /* Slightly darker green on hover */
+        .social-icon-circle:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
-
+        .social-icon-circle svg, .social-icon-circle img {
+            width: 2.5rem; /* Icon size */
+            height: 2.5rem; /* Icon size */
+            fill: white; /* Ensure SVG icons are white */
+        }
     </style>
 </head>
 <body class="p-4">
@@ -157,40 +134,35 @@
         </div>
 
         <div id="recommendations" class="mt-10 hidden">
-            <!-- Back to Main Page Button - TOP -->
-            <a href="index.html" class="back-button mb-8">חזרה לעמוד הראשי</a>
-            
-            <!-- Social Icons Section (after quiz completion) -->
-            <div class="mt-8 pt-4 border-t border-gray-200 flex justify-center gap-4 mb-8">
-                <!-- WhatsApp -->
-                <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="result-social-card text-white bg-gradient-to-br from-green-400 to-green-500">
-                    <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="אייקון ווצאפ" class="object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2f7f9e/FFFFFF?text=WA'">
-                </a>
-                <!-- Phone -->
-                <a href="tel:+972529252015" target="_blank" class="result-social-card text-white bg-gradient-to-br from-purple-400 to-purple-500">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.01 15.38C18.79 15.38 17.58 15.19 16.48 14.82C16.14 14.71 15.76 14.8 15.49 15.08L13.19 17.38C10.59 16.03 8.35 13.79 7 11.19L9.38 8.89C9.67 8.62 9.75 8.23 9.64 7.9C9.27 6.8 9.08 5.59 9.08 4.38C9.08 3.59 8.42 3 7.63 3H4.38C3.59 3 3 3.59 3 4.38C3 13.52 10.48 21 19.62 21C20.41 21 21 20.41 21 19.62V16.37C21 15.58 20.41 15.38 20.01 15.38Z"/>
-                    </svg>
-                </a>
-                <!-- Email -->
-                <a href="mailto:ready4retire@gmail.com" target="_blank" class="result-social-card text-white bg-gradient-to-br from-red-500 to-red-600">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 6C22 5.44772 21.5523 5 21 5H3C2.44772 5 2 5.44772 2 6V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V6ZM20 7.23892L12.0712 13.1852C12.0205 13.2231 11.9795 13.2231 11.9288 13.1852L4 7.23892V17H20V7.23892ZM4 6.43137L11.9288 12.3776L20 6.43137L20 7.23892L11.9288 13.1852C11.9795 13.2231 12.0205 13.2231 11.9795 13.1852L4 7.23892L4 6.43137Z"/>
-                    </svg>
-                </a>
-                <!-- Facebook -->
-                <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr" target="_blank" class="result-social-card text-white bg-gradient-to-br from-blue-400 to-blue-500">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 12C22 6.477 17.523 2 12 2S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.875V14.808h-2.92V12h2.92V9.704c0-2.89 1.625-4.483 4.363-4.483 1.257 0 2.345.223 2.651.323v2.867h-1.79c-1.401 0-1.676.668-1.676 1.642V12h3.22l-.527 2.808H14.07V21.875C18.343 21.128 22 16.991 22 12z"/>
-                    </svg>
-                </a>
-                <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="result-social-card text-white bg-gradient-to-br from-indigo-400 to-indigo-500">
-                    <!-- White LinkedIn SVG icon -->
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M19 0H5C2.239 0 0 2.239 0 5V19C0 21.761 2.239 24 5 24H19C21.761 24 24 21.761 24 19V5C24 2.239 21.761 0 19 0ZM8 19H5V8H8V19ZM6.5 6.732C5.534 6.732 4.75 5.942 4.75 4.974C4.75 4.006 5.534 3.216 6.5 3.216C7.466 3.216 8.25 4.006 8.25 4.974C8.25 5.942 7.466 6.732 6.5 6.732ZM20 19H17V13.399C17 12.009 16.983 10.219 15.142 10.219C13.272 10.219 13 11.758 13 13.268V19H10V8H13V9.673H13.047C13.344 9.124 13.963 8.32 15.53 8.32C18.736 8.32 19 10.912 19 12.772V19H20Z" fill="white"/>
-                    </svg>
-                </a>
+            <!-- Back to Index Button and Contact Circles Section - now at the top of recommendations div -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0">
+                <button onclick="window.location.href='index.html'" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out w-full sm:w-auto">
+                    חזרה לעמוד הראשי
+                </button>
+                <div class="mt-4 sm:mt-0 flex justify-center gap-2 rtl:space-x-reverse">
+                    <!-- WhatsApp (using img as per g.html) -->
+                    <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81" target="_blank" class="social-icon-circle bg-gradient-to-br from-green-400 to-green-500" aria-label="ווצאפ">
+                        <img src="https://dl.dropboxusercontent.com/scl/fi/5bb39446vijibzkxcjgq3/whatsapp-1.png?rlkey=ietiz6gmb0eu58ugvo55nxgq2&raw=1" alt="אייקון ווצאפ" class="object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/2f7f9e/FFFFFF?text=WA'">
+                    </a>
+                    <!-- LinkedIn (using SVG as per g.html) -->
+                    <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-icon-circle bg-gradient-to-br from-indigo-400 to-indigo-500" aria-label="לינקדאין">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M19 0H5C2.239 0 0 2.239 0 5V19C0 21.761 2.239 24 5 24H19C21.761 24 24 21.761 24 19V5C24 2.239 21.761 0 19 0ZM8 19H5V8H8V19ZM6.5 6.732C5.534 6.732 4.75 5.942 4.75 4.974C4.75 4.006 5.534 3.216 6.5 3.216C7.466 3.216 8.25 4.006 8.25 4.974C8.25 5.942 7.466 6.732 6.5 6.732ZM20 19H17V13.399C17 12.009 16.983 10.219 15.142 10.219C13.272 10.219 13 11.758 13 13.268V19H10V8H13V9.673H13.047C13.344 9.124 13.963 8.32 15.53 8.32C18.736 8.32 19 10.912 19 12.772V19H20Z" fill="white"/>
+                        </svg>
+                    </a>
+                    <!-- Phone (using SVG as per g.html) -->
+                    <a href="tel:+972529252015" target="_blank" class="social-icon-circle bg-gradient-to-br from-purple-400 to-purple-500" aria-label="טלפון">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.01 15.38C18.79 15.38 17.58 15.19 16.48 14.82C16.14 14.71 15.76 14.8 15.49 15.08L13.19 17.38C10.59 16.03 8.35 13.79 7 11.19L9.38 8.89C9.67 8.62 9.75 8.23 9.64 7.9C9.27 6.8 9.08 5.59 9.08 4.38C9.08 3.59 8.42 3 7.63 3H4.38C3.59 3 3 3.59 3 4.38C3 13.52 10.48 21 19.62 21C20.41 21 21 20.41 21 19.62V16.37C21 15.58 20.41 15.38 20.01 15.38Z"/>
+                        </svg>
+                    </a>
+                    <!-- Email (using SVG as per g.html) -->
+                    <a href="mailto:ready4retire@gmail.com" target="_blank" class="social-icon-circle bg-gradient-to-br from-red-500 to-red-600" aria-label="אימייל">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 6C22 5.44772 21.5523 5 21 5H3C2.44772 5 2 5.44772 2 6V18C2 18.5523 2.44772 19 3 19H21C21.5523 19 22 18.5523 22 18V6ZM20 7.23892L12.0712 13.1852C12.0205 13.2231 11.9795 13.2231 11.9288 13.1852L4 7.23892V17H20V7.23892ZM4 6.43137L11.9288 12.3776L20 6.43137L20 7.23892L11.9288 13.1852C11.9795 13.2231 12.0205 13.2231 11.9795 13.1852L4 7.23892L4 6.43137Z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">המלצות הקורסים עבור הארגון שלך:</h2>
@@ -202,15 +174,11 @@
             <div id="additional-recommendation-list">
                 <!-- Additional recommendations will be dynamically loaded here by JavaScript -->
             </div>
-
-            <!-- Back to Main Page Button - BOTTOM -->
-            <a href="index.html" class="back-button">חזרה לעמוד הראשי</a>
         </div>
     </div>
 
     <script>
         // Define the list of available courses with their associated tags
-        // Tags are refined to distinguish between general HR, termination, general pension, and specific retirement topics.
         const courses = [
             { name: "אתגרי העסקה במאה 21", tags: ["HR_General", "Employment_Trends"] },
             { name: "תהליכי סיומי העסקה פיטורים התפטרות ופיצויי פיטורים", tags: ["HR_Termination", "Legal_Employment", "Severance_Pay"] },
@@ -657,6 +625,7 @@
             // Theoretical maximum score adjusted for reliability based on the updated scoring.
             // A perfect match across 5 questions with potential 50 points per question (for specific courses)
             // or 25-40 for initial filter questions.
+            // Example for HR_TERMINATION_FINAL_PATH: Q0 (25) + Q_HR_INITIAL_CHOICE (40) + Q1_HR_TERM_SPEC (50) + Q2_HR_TERM_SPEC (50) + Q3_HR_TERM_SPEC (50) + Q_FINAL_COMMON (25) = 245.
             // Setting theoreticalMaxCourseScore to 250 (max possible from tags).
             const theoreticalMaxCourseScore = 250; 
 
@@ -665,31 +634,51 @@
                 return { name, percentage };
             });
 
+            // Sort all courses by percentage in descending order
             rankedCourses.sort((a, b) => b.percentage - a.percentage);
-
-            const topRecommendations = rankedCourses.filter(rec => rec.percentage >= 70).slice(0, 5);
-            // Get courses that are not in topRecommendations, sorted by their percentage
-            const additionalRecommendations = rankedCourses.filter(rec => !topRecommendations.some(top => top.name === rec.name));
             
-            displayRecommendations(topRecommendations, additionalRecommendations);
+            displayRecommendations(rankedCourses); // Pass the full sorted list to display function
         }
 
         /**
          * Displays the final course recommendations, separated into top and additional lists.
-         * @param {Array<Object>} topRecs - An array of top recommended course objects.
-         * @param {Array<Object>} additionalRecs - An array of additional recommended course objects.
+         * Ensures at least 3 courses in the top section.
+         * @param {Array<Object>} allRankedCourses - An array of all ranked course objects, sorted by percentage.
          */
-        function displayRecommendations(topRecs, additionalRecs) {
+        function displayRecommendations(allRankedCourses) {
             topRecommendationList.innerHTML = '';
             additionalRecommendationList.innerHTML = '';
             
+            let topRecs = allRankedCourses.filter(rec => rec.percentage >= 70);
+            let additionalRecs = allRankedCourses.filter(rec => rec.percentage < 70);
+
+            // If there are fewer than 3 courses at 70% or higher,
+            // promote courses from additionalRecs to fill up to 3 for the top section.
+            if (topRecs.length < 3) {
+                const needed = 3 - topRecs.length;
+                const coursesToPromote = additionalRecs.splice(0, needed); // Remove from additionalRecs and get them
+                topRecs = topRecs.concat(coursesToPromote); // Add to topRecs
+            }
+
+            // Ensure topRecs is limited to max 5 (as initially requested for "top 5 matching").
+            // This is important if promoting courses made the list exceed 5.
+            topRecs = topRecs.slice(0, 5);
+            
+            // Re-filter additionalRecs to ensure it only contains courses not in the final topRecs.
+            // This is safer as courses might have been promoted or sliced out.
+            additionalRecs = allRankedCourses.filter(rec => !topRecs.some(top => top.name === rec.name));
+
+
             if (topRecs.length > 0) {
                 topRecs.forEach((rec, index) => {
                     const recCard = document.createElement('div');
                     recCard.className = 'recommendation-card';
+                    // Display percentage ONLY if the course genuinely achieved >= 70%
+                    const percentageDisplay = (rec.percentage >= 70) ? `<span class="match-percentage">${rec.percentage}% התאמה</span>` : '';
+                    
                     recCard.innerHTML = `
                         <span class="course-name">${rec.name}</span>
-                        <span class="match-percentage">${rec.percentage}% התאמה</span>
+                        ${percentageDisplay}
                     `;
                     topRecommendationList.appendChild(recCard);
                     setTimeout(() => {
@@ -697,11 +686,11 @@
                     }, 50 * index); 
                 });
             } else {
-                topRecommendationList.innerHTML = '<p class="text-gray-600 text-center">לא נמצאו המלצות קורסים באחוז התאמה של 70% ומעלה על פי בחירותיך.</p>';
+                // This case should ideally not be reached if there are any courses at all
+                topRecommendationList.innerHTML = '<p class="text-gray-600 text-center">לא נמצאו המלצות קורסים.</p>';
             }
 
             if (additionalRecs.length > 0) {
-                // For additional courses, do not display percentage.
                 additionalRecs.forEach((rec, index) => {
                     const recCard = document.createElement('div');
                     recCard.className = 'recommendation-card';
@@ -714,7 +703,7 @@
                         recCard.classList.add('show');
                     }, 50 * index); 
                 });
-            } else if (topRecs.length > 0) {
+            } else {
                 additionalRecommendationList.innerHTML = '<p class="text-gray-600 text-center">אין קורסים נוספים מתאימים.</p>';
             }
             
@@ -724,8 +713,8 @@
         // Initial setup when the page loads: Display the very first question (Q0)
         document.addEventListener('DOMContentLoaded', () => {
             // Start with only Q0 in the quiz sequence. The rest will be determined dynamically.
-            // We temporarily add dummy questions to 'questionsForCurrentQuiz' to ensure its length is 5 initially
-            // for correct progress bar calculation. These will be replaced.
+            // We initialize questionsForCurrentQuiz with Q0 and enough placeholders to make it 5 questions long.
+            // This ensures the progress bar calculates correctly from the start.
             const initialTempPath = ["Q0", "Q1_HR_TERM_SPEC", "Q2_HR_TERM_SPEC", "Q3_HR_TERM_SPEC", "Q_FINAL_COMMON"];
             setQuizQuestionsAndAnswers(initialTempPath, 0); 
             currentQuestionIndex = 0;
