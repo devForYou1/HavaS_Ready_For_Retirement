@@ -34,29 +34,44 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Accordion content to open fully without scroll */
+        /* Accordion content to open fully without scroll - UPDATED EFFECTS */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out, transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Slower transition for smoother reveal with transform/opacity */
+            transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s ease-in-out, transform 0.7s ease-in-out; /* Smoother, more distinct curve */
             padding-top: 0;
             padding-bottom: 0;
             opacity: 0; /* Start hidden */
-            transform: translateY(10px); /* Start slightly below */
+            transform: translateY(20px); /* Start further below for a more pronounced slide-up */
         }
         .accordion-content.active {
             max-height: 2000px; /* Large enough value to ensure content opens fully */
             padding-top: 1rem;
             padding-bottom: 1rem;
             opacity: 1; /* Fade in */
-            transform: translateY(0); /* Slide up */
+            transform: translateY(0); /* Slide up to final position */
         }
         .accordion-header {
-            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 1.5rem; /* Rounded corners for header */
+            position: relative; /* For the pseudo-element glow */
         }
         .accordion-header:hover {
-            transform: translateY(-2px); /* Slight lift on hover */
+            transform: translateY(-3px); /* Slight lift on hover */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
         }
+        .accordion-header.active {
+            border-bottom-left-radius: 0; /* Remove bottom-left radius when active */
+            border-bottom-right-radius: 0; /* Remove bottom-right radius when active */
+        }
+        /* Style for the chevron icon */
+        .accordion-header .fa-chevron-down {
+            transition: transform 0.3s ease-in-out;
+        }
+        .accordion-header.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
         .video-container {
             position: relative;
             width: 100%;
@@ -103,6 +118,53 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Adjustments for contact icons */
+        .contact-icon-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Allow wrapping on very small screens */
+            gap: 0.75rem; /* Reduced gap between icons */
+            padding-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .contact-icon-container a {
+            width: 60px; /* Smaller width for circles */
+            height: 60px; /* Smaller height for circles */
+            font-size: 2.25rem; /* Adjust icon size within smaller circles */
+            flex-shrink: 0;
+            border-radius: 9999px; /* Fully rounded */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Shadow */
+            transform: scale(1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .contact-icon-container a:hover {
+            transform: scale(1.15); /* Slightly larger hover effect */
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -4px rgba(0, 0, 0, 0.08); /* More pronounced shadow on hover */
+        }
+
+        /* Responsive adjustments for icons */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .contact-icon-container a {
+                width: 70px; /* Slightly larger on small screens */
+                height: 70px;
+                font-size: 2.5rem;
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .contact-icon-container a {
+                width: 80px; /* Even larger on medium screens */
+                height: 80px;
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8 lg:p-12">
@@ -117,45 +179,43 @@
                  onerror="this.onerror=null;this.src='https://placehold.co/1000x500/e2e8f0/4a5568?text=Company+Logo+Not+Found';">
         </div>
 
-        <!-- 2. Contact Cards -->
-        <!-- Removed H2 "צרו קשר" -->
-        <div class="no-scrollbar flex overflow-x-auto justify-center pb-6 mb-10 gap-6 px-4 scroll-reveal">
+        <!-- 2. Contact Cards - Updated Styling -->
+        <div class="contact-icon-container scroll-reveal">
             <!-- WhatsApp Card -->
             <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81"
                target="_blank"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fab fa-whatsapp text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-green-400 to-green-600 text-white">
+                <i class="fab fa-whatsapp"></i>
             </a>
 
             <!-- Phone Card -->
             <a href="tel:972529252015"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fas fa-phone text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-blue-400 to-blue-600 text-white">
+                <i class="fas fa-phone"></i>
             </a>
 
             <!-- Facebook Card -->
             <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr"
                target="_blank"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fab fa-facebook-f text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-indigo-500 to-indigo-700 text-white">
+                <i class="fab fa-facebook-f"></i>
             </a>
 
             <!-- LinkedIn Card -->
             <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                target="_blank"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fab fa-linkedin-in text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+                <i class="fab fa-linkedin-in"></i>
             </a>
 
             <!-- Email Card -->
             <a href="mailto:ready4retire@gmail.com"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fas fa-envelope text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-red-500 to-red-700 text-white">
+                <i class="fas fa-envelope"></i>
             </a>
         </div>
 
         <!-- 3. Auto-playing Video -->
-        <!-- Removed H2 "הכירו אותי" -->
         <div class="mb-10 video-container scroll-reveal">
             <iframe src="https://www.youtube.com/embed/b63I4v4cWsw?autoplay=1&mute=1&controls=0&loop=1&playlist=b63I4v4cWsw"
                     frameborder="0"
@@ -165,12 +225,11 @@
         </div>
 
         <!-- 4. Accordion Section -->
-        <!-- Removed H2 "מידע נוסף" -->
         <div class="mb-10 space-y-5 scroll-reveal">
 
             <!-- Accordion Item 1: About Me -->
             <div class="accordion-item bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-t-2xl focus:outline-none">
+                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none">
                     <span>על עצמי</span>
                     <i class="fas fa-chevron-down transform transition-transform duration-300 text-gray-600"></i>
                 </button>
@@ -180,10 +239,10 @@
                          class="w-full h-auto rounded-xl mb-5 shadow-sm"
                          onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image+Not+Found';">
                     <p class="mb-4">
-                        חוה שורץ שושני, מרצה ומומחית בתחום ההכנה לפרישה, מלווה ארגונים, עובדים ופורשים בדרכם לפרק החדש של חייהם – החיים שלאחר העבודה.
+                        חוה שורץ שושני, מרצה ומומחית בתחום ההכנה לפרישה, מלווה ארגונים, עובדות ועובדים ופורשות ופורשים בדרכם/ן לפרק החדש של חייהם/ן – החיים שלאחר העבודה.
                     </p>
                     <p class="mb-4">
-                        לאורך שנים של עשייה במגזר הציבורי והעסקי, ליוויתי אלפי עובדים בתהליכי סיום עבודה, שינוי קריירה ופרישה, מתוך הבנה עמוקה של המורכבות הרגשית, המשפחתית והתעסוקתית שמביאה איתה תקופה זו.
+                        לאורך שנים של עשייה במגזר הציבורי והעסקי, ליוויתי אלפי עובדות ועובדים בתהליכי סיום עבודה, שינוי קריירה ופרישה, מתוך הבנה עמוקה של המורכבות הרגשית, המשפחתית והתעסוקתית שמביאה איתה תקופה זו.
                     </p>
                     <p>
                         הקמתי את “מוכנים לפרישה עם חוה שורץ שושני” מתוך שליחות – להפוך את תהליך הפרישה ממשבר להזדמנות. אני משלבת ידע גרונטולוגי, ניסיון ניהולי, כלים פרקטיים ורגישות אנושית, ומאמינה שלכל אדם מגיעה פרישה עם משמעות, בהירות ובחירה.
@@ -193,7 +252,7 @@
 
             <!-- Accordion Item 2: Education -->
             <div class="accordion-item bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-t-2xl focus:outline-none">
+                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none">
                     <span>השכלה</span>
                     <i class="fas fa-chevron-down transform transition-transform duration-300 text-gray-600"></i>
                 </button>
@@ -202,7 +261,7 @@
                         <li>בעלת שלושה תארים באונ' בר אילן ובן גוריון</li>
                         <li>בוגרת לימודי דיני עבודה, חוק ומשפט</li>
                         <li>בוגרת לימודי תכנון פרישה bdo</li>
-                        <li>בוגרת קורס דירקטורים למנהלות</li>
+                        <li>בוגרת קורס דירקטורים למנהלים</li>
                         <li>מנחת קבוצות מוסמכת</li>
                         <li>חשבת שכר בכירה</li>
                     </ul>
@@ -211,68 +270,68 @@
 
             <!-- Accordion Item 3: My Vision -->
             <div class="accordion-item bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-t-2xl focus:outline-none">
+                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none">
                     <span>החזון שלי</span>
                     <i class="fas fa-chevron-down transform transition-transform duration-300 text-gray-600"></i>
                 </button>
                 <div class="accordion-content px-5 py-0 text-gray-700 leading-relaxed">
                     <ul class="list-decimal pr-8 space-y-2">
-                        <li>לתת מענה 1:1 למנהלות משאבי אנוש לנהל לכם את עולם הפרישה פנסיה וסיומי העסקה.</li>
+                        <li>לתת מענה 1:1 למנהלות/י משאבי אנוש לנהל לכם/ן את עולם הפרישה, פנסיה וסיומי העסקה.</li>
                         <li>לבנות לארגונים קורסי פרישה מ-א' ועד ת'.</li>
                         <li>לקחת חלק בהרצאות אורגניות של הארגונים ולהשתלב כמרצה באחת מההרצאות מדף שלי.</li>
-                        <li>ללוות עובדים באופן פרטני בבניית סדר יום שאחרי הפרישה</li>
+                        <li>ללוות עובדות ועובדים באופן פרטני בבניית סדר יום שאחרי הפרישה.</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Accordion Item 4: Who are my services for? -->
             <div class="accordion-item bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-t-2xl focus:outline-none">
+                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none">
                     <span>למי השירותים שלי מיועדים?</span>
                     <i class="fas fa-chevron-down transform transition-transform duration-300 text-gray-600"></i>
                 </button>
                 <div class="accordion-content px-5 py-0 text-gray-700 leading-relaxed">
                     <ul class="list-disc pr-8 space-y-2">
-                        <li>מנהלים בארגון</li>
-                        <li>אנשי משאבי אנוש</li>
+                        <li>מנהלות/ים בארגון</li>
+                        <li>א.נשי משאבי אנוש</li>
                         <li>עובדות ועובדים בארגון</li>
                     </ul>
-                    <p class="mt-4">ההרצאות והקורסים מיועדים לקבוצות / יחידים</p>
-                    <p>ההרצאות יכולות להתקיים פיזית בארגון או דרך ה- ZOOM</p>
+                    <p class="mt-4">ההרצאות והקורסים מיועדים לקבוצות / יחידים/ות.</p>
+                    <p>ההרצאות יכולות להתקיים פיזית בארגון או דרך ה- ZOOM.</p>
                 </div>
             </div>
 
             <!-- Accordion Item 5: Courses for HR Managers -->
             <div class="accordion-item bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-t-2xl focus:outline-none">
-                    <span>קורסים למנהלי משאבי אנוש</span>
+                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none">
+                    <span>קורסים למנהלות/י משאבי אנוש</span>
                     <i class="fas fa-chevron-down transform transition-transform duration-300 text-gray-600"></i>
                 </button>
                 <div class="accordion-content px-5 py-0 text-gray-700 leading-relaxed">
                     <ul class="list-disc pr-8 space-y-2">
                         <li>אתגרי העסקה במאה 21</li>
-                        <li>תהליכי סיומי העסקה פיטורים התפטרות ופיצויי פיטורים</li>
+                        <li>תהליכי סיומי העסקה: פיטורים, התפטרות ופיצויי פיטורים</li>
                         <li>תכנון תהליכי הפרישה בארגונים</li>
                         <li>עולם הפנסיה</li>
-                        <li>זכויות וזכאויות עובדים מבוגרים</li>
-                        <li>תפקיד אנשי המשא"ן בליווי עובדים לקראת פרישה</li>
-                        <li>עשה ואל תעשה בתהליכי הערכת עובדים</li>
+                        <li>זכויות וזכאויות עובדים/ות מבוגרים/ות</li>
+                        <li>תפקיד א.נשי המשא"ן בליווי עובדות ועובדים לקראת פרישה</li>
+                        <li>עשו ואל תעשו בתהליכי הערכת עובדות ועובדים</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Accordion Item 6: Lectures on Retirement -->
             <div class="accordion-item bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
-                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 rounded-t-2xl focus:outline-none">
+                <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none">
                     <span>הרצאות בנושא פרישה</span>
                     <i class="fas fa-chevron-down transform transition-transform duration-300 text-gray-600"></i>
                 </button>
                 <div class="accordion-content px-5 py-0 text-gray-700 leading-relaxed">
                     <ul class="list-disc pr-8 space-y-2">
-                        <li>כל מה שנשים חייבות להכיר ולדעת בנושא הפנסיה!</li>
+                        <li>כל מה שא.נשים חייבים להכיר ולדעת בנושא הפנסיה!</li>
                         <li>התמודדות עם שינוי ומעברי קריירה</li>
                         <li>תכנון פנסיוני - שלב אחר שלב</li>
-                        <li>על מה שרציתם לדעת על כלכלת משפחה</li>
+                        <li>על מה שרציתם/ן לדעת על כלכלת משפחה</li>
                         <li>מי את קרן פנסיה חדשה?</li>
                         <li>זוגיות בפרישה</li>
                         <li>העסקה רב גילאית - פערי הדורות - יתרון או חסרון?</li>
@@ -280,8 +339,8 @@
                         <li>הכנה רגשית לפרישה</li>
                         <li>חשיבות תכנון פיננסי בפרישה</li>
                         <li>קצבת אזרח ותיק</li>
-                        <li>צוואות ירושות ייפוי כוח מתמשך</li>
-                        <li>עולם קרנות הפנסיה (ותיקה חדשה ותקציבית)</li>
+                        <li>צוואות, ירושות, ייפוי כוח מתמשך</li>
+                        <li>עולם קרנות הפנסיה (ותיקה, חדשה ותקציבית)</li>
                         <li>העברה בינדורית בקופות הפנסיה</li>
                         <li>זכויות וזכאויות גיל שלישי</li>
                         <li>התמודדות עם שינוי</li>
@@ -336,10 +395,10 @@
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-8 text-center leading-tight scroll-reveal">נבחרת ההמלצות</h2>
         <div class="mb-10 space-y-0 divide-y divide-gray-300 border-t border-gray-300 scroll-reveal">
             <div class="py-5 px-4 text-gray-700 leading-relaxed text-center">
-                <p class="font-serif italic text-lg sm:text-xl">"המון תודה לחווה שוורץ שושני, על ההרצאה המרתקת. העשרת אותנו בידע עצום, וחשוב. תודה שגם היית קשובה לשאלות ונתת מענה ענייני, ומקצועי. בהחלט הפרית אותנו. תבורכי"</p>
+                <p class="font-serif italic text-lg sm:text-xl">"המון תודה לחוה שורץ שושני, על ההרצאה המרתקת. העשרת אותנו בידע עצום, וחשוב. תודה שגם היית קשובה לשאלות ונתת מענה ענייני, ומקצועי. בהחלט הפרית אותנו. תבורכי"</p>
             </div>
             <div class="py-5 px-4 text-gray-700 leading-relaxed text-center">
-                <p class="font-serif italic text-lg sm:text-xl">"תודה רבה לך חווה ההרצאה הייתה מעולה וסיפקה לי המון תשובות וידע עוד פעם תודה"</p>
+                <p class="font-serif italic text-lg sm:text-xl">"תודה רבה לך חוה ההרצאה הייתה מעולה וסיפקה לי המון תשובות וידע עוד פעם תודה"</p>
             </div>
             <div class="py-5 px-4 text-gray-700 leading-relaxed text-center">
                 <p class="font-serif italic text-lg sm:text-xl">"הקורס תכנון פרישה , הינו קורס חובה!! חוה מדהימה, העבירה את המסר בצורה מאוד עניינית, מקצועית ובאווירה נעימה. קיבלתי כלים חשובים לפרישה. מחכה למפגשים הבאים"</p>
@@ -348,12 +407,12 @@
                 <p class="font-serif italic text-lg sm:text-xl">"העברת לנו התכנים בצורה מושלמת, יש למה לצפות"</p>
             </div>
             <div class="py-5 px-4 text-gray-700 leading-relaxed text-center">
-                <p class="font-serif italic text-lg sm:text-xl">"חווה אלופה ותותחית, איזה תגובות של נחת, פצצת אנרגיה מקצוענית ואנושית!"</p>
+                <p class="font-serif italic text-lg sm:text-xl">"חוה אלופה ותותחית, איזה תגובות של נחת, פצצת אנרגיה מקצוענית ואנושית!"</p>
             </div>
         </div>
 
         <!-- 7. Client List -->
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-8 text-center leading-tight scroll-reveal">הצטרפו גם אתם! מעסיקים שכבר בחרו בי</h2>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-8 text-center leading-tight scroll-reveal">הצטרפו גם אתם/ן! מעסיקות ומעסיקים שכבר בחרו בי</h2>
         <!-- Client tags now without a surrounding box, for a more integrated and innovative look -->
         <div class="mb-10 flex flex-wrap justify-center gap-4 text-center scroll-reveal">
             <div class="client-tag">אוניברסיטת תל אביב</div>
@@ -366,52 +425,52 @@
             <div class="client-tag">בזן</div>
             <div class="client-tag">מנועי בית שמש</div>
             <div class="client-tag">טכנולוגיית להבים</div>
-            <div class="client-tag">השתלמות חשבי שכר</div>
-            <div class="client-tag">הסתדרות - לומדים ומתקדמים</div>
+            <div class="client-tag">השתלמות חשבות שכר</div>
+            <div class="client-tag">הסתדרות - לומדות ולומדים ומתקדמים</div>
             <div class="client-tag">ייבולי גשר</div>
             <div class="client-tag">ויצו</div>
             <div class="client-tag">אלון תבור חברת חשמל</div>
             <div class="client-tag">עיריית הרצליה</div>
-            <div class="client-tag">גמלאי בנק דיסקונט</div>
+            <div class="client-tag">גמלאיות וגמלאי בנק דיסקונט</div>
             <div class="client-tag">חברת משוב</div>
             <div class="client-tag">Univercity שלטון מקומי</div>
             <div class="client-tag">משרד הבריאות חיפה</div>
         </div>
 
-        <!-- 8. Repeat Contact Info -->
+        <!-- 8. Repeat Contact Info - Updated Styling -->
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-8 text-center leading-tight scroll-reveal">צרו קשר עכשיו!</h2>
-        <div class="no-scrollbar flex overflow-x-auto justify-center pb-6 gap-6 px-4 scroll-reveal">
+        <div class="contact-icon-container scroll-reveal">
             <!-- WhatsApp Card -->
             <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81"
                target="_blank"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fab fa-whatsapp text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-green-400 to-green-600 text-white">
+                <i class="fab fa-whatsapp"></i>
             </a>
 
             <!-- Phone Card -->
             <a href="tel:972529252015"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fas fa-phone text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-blue-400 to-blue-600 text-white">
+                <i class="fas fa-phone"></i>
             </a>
 
             <!-- Facebook Card -->
             <a href="https://www.facebook.com/share/1AwxF7mSpK/?mibextid=wwXIfr"
                target="_blank"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fab fa-facebook-f text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-indigo-500 to-indigo-700 text-white">
+                <i class="fab fa-facebook-f"></i>
             </a>
 
             <!-- LinkedIn Card -->
             <a href="https://www.linkedin.com/in/chana-shoshani-swartz?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                target="_blank"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fab fa-linkedin-in text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-blue-600 to-blue-800 text-white">
+                <i class="fab fa-linkedin-in"></i>
             </a>
 
             <!-- Email Card -->
             <a href="mailto:ready4retire@gmail.com"
-               class="flex-shrink-0 w-28 h-28 sm:w-32 sm:h-32 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                <i class="fas fa-envelope text-white text-5xl sm:text-6xl"></i>
+               class="bg-gradient-to-br from-red-500 to-red-700 text-white">
+                <i class="fas fa-envelope"></i>
             </a>
         </div>
 
@@ -419,7 +478,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Accordion functionality
+            // Accordion functionality - UPDATED
             const accordionHeaders = document.querySelectorAll('.accordion-header');
 
             accordionHeaders.forEach(header => {
@@ -428,8 +487,9 @@
                     const content = accordionItem.querySelector('.accordion-content');
                     const icon = header.querySelector('i');
 
-                    // Toggle active class on content and rotate icon
+                    // Toggle active class on content and header, and rotate icon
                     content.classList.toggle('active');
+                    header.classList.toggle('active'); // Add/remove active class from header
                     icon.classList.toggle('rotate-180');
 
                     // Close other open accordions
@@ -440,6 +500,7 @@
                             const otherIcon = otherHeader.querySelector('i');
 
                             otherContent.classList.remove('active');
+                            otherHeader.classList.remove('active'); // Remove active class from other headers
                             otherIcon.classList.remove('rotate-180');
                         }
                     });
