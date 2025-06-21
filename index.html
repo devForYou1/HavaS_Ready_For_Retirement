@@ -92,13 +92,13 @@
         .client-tag {
             background-color: #e0f2fe; /* Light blue */
             color: #1e40af; /* Darker blue text */
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.5rem; /* Reduced padding for smaller tags */
             border-radius: 9999px; /* Fully rounded */
             display: inline-flex; /* For proper padding and centering */
             align-items: center;
             justify-content: center;
             font-weight: 600; /* Semi-bold */
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Smaller font size */
             border: none; /* Explicitly remove border */
             box-shadow: none; /* Ensure no shadow */
             transition: transform 0.2s ease-in-out;
@@ -123,7 +123,9 @@
         .contact-icon-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Allow wrapping on very small screens */
+            flex-wrap: nowrap; /* Ensure items stay in one row */
+            overflow-x: auto; /* Allow horizontal scrolling if necessary on very small screens */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
             gap: 0.75rem; /* Reduced gap between icons */
             padding-bottom: 1.5rem;
             margin-bottom: 2.5rem;
@@ -180,7 +182,7 @@
         </div>
 
         <!-- 2. Contact Cards - Updated Styling -->
-        <div class="contact-icon-container scroll-reveal">
+        <div class="contact-icon-container no-scrollbar scroll-reveal">
             <!-- WhatsApp Card -->
             <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81"
                target="_blank"
@@ -438,7 +440,7 @@
 
         <!-- 8. Repeat Contact Info - Updated Styling -->
         <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-8 text-center leading-tight scroll-reveal">צרו קשר עכשיו!</h2>
-        <div class="contact-icon-container scroll-reveal">
+        <div class="contact-icon-container no-scrollbar scroll-reveal">
             <!-- WhatsApp Card -->
             <a href="https://wa.me/972529252015?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%97%D7%95%D7%94%21%0A%D7%A9%D7%9E%D7%A2%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%A7%D7%95%D7%A8%D7%A1%D7%99%20%D7%94%D7%A4%D7%A8%D7%99%D7%A9%D7%94%20%D7%A9%D7%90%D7%AA%20%D7%9E%D7%A2%D7%91%D7%99%D7%A8%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%F0%9F%98%81"
                target="_blank"
