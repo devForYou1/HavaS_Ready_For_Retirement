@@ -38,11 +38,15 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s ease-in-out, transform 0.7s ease-in-out; /* Smoother, more distinct curve */
+            /* Enhanced transition for a more fluid and 'bouncy' feel */
+            transition: max-height 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55), /* Custom easing for a springy height change */
+                        padding 0.9s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                        opacity 0.7s ease-in-out, /* Slightly slower fade in/out for content */
+                        transform 0.7s ease-in-out; /* Slightly slower transform for content */
             padding-top: 0;
             padding-bottom: 0;
             opacity: 0; /* Start hidden */
-            transform: translateY(20px); /* Start further below for a more pronounced slide-up */
+            transform: translateY(40px); /* Even more pronounced slide up from below */
         }
         .accordion-content.active {
             max-height: 2000px; /* Large enough value to ensure content opens fully */
@@ -108,7 +112,7 @@
             transform: translateY(-1px); /* Slight lift on hover */
         }
 
-        /* Scroll reveal effects */
+        /* Scroll reveal effects - Existing */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -118,6 +122,38 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* New entry/exit animations for full page */
+        @keyframes fadeInScaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeOutScaleDown {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+        }
+
+        body.page-enter {
+            animation: fadeInScaleUp 0.8s ease-out forwards;
+        }
+
+        body.page-exit {
+            animation: fadeOutScaleDown 0.8s ease-out forwards;
+        }
+
 
         /* Adjustments for contact icons */
         .contact-icon-container {
@@ -219,7 +255,8 @@
 
         <!-- 3. Auto-playing Video -->
         <div class="mb-10 video-container scroll-reveal">
-            <iframe src="https://www.youtube.com/embed/b63I4v4cWsw?autoplay=1&mute=1&controls=0&loop=1&playlist=b63I4v4cWsw"
+            <!-- 'autoplay=1' is set. Note: Browser policies may prevent autoplay with sound without user interaction. -->
+            <iframe src="https://www.youtube.com/embed/b63I4v4cWsw?autoplay=1&controls=0&loop=1&playlist=b63I4v4cWsw"
                     frameborder="0"
                     allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
@@ -229,10 +266,10 @@
         <!-- 4. Accordion Section -->
         <div class="mb-10 space-y-5 scroll-reveal">
 
-            <!-- Accordion Item 1: About Me -->
+            <!-- Accordion Item 1: About Me - UPDATED CONTENT -->
             <div class="accordion-item bg-gray-50 rounded-2xl shadow-lg overflow-hidden">
                 <button class="accordion-header w-full flex justify-between items-center p-5 sm:p-6 text-xl sm:text-2xl font-bold text-gray-700 bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none">
-                    <span>על עצמי</span>
+                    <span>על עצמי - חוה שורץ שושני</span>
                     <i class="fas fa-chevron-down transform transition-transform duration-300 text-gray-600"></i>
                 </button>
                 <div class="accordion-content px-5 py-0 text-gray-700 leading-relaxed">
@@ -241,13 +278,13 @@
                          class="w-full h-auto rounded-xl mb-5 shadow-sm"
                          onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image+Not+Found';">
                     <p class="mb-4">
-                        חוה שורץ שושני, מרצה ומומחית בתחום ההכנה לפרישה, מלווה ארגונים, עובדות ועובדים ופורשות ופורשים בדרכם/ן לפרק החדש של חייהם/ן – החיים שלאחר העבודה.
+                        אני חוה שורץ שושני, מומחית לייעוץ, ליווי והכנה לפרישה, סיומי העסקה ותהליכי שינוי בקריירה. את העשייה שלי אני מביאה מתוך ניסיון עשיר של עשרות שנים כמנהלת משאבי אנוש בכירה בארגונים גדולים, לצד הכשרה מעמיקה ורחבה במספר תחומים משלימים.
                     </p>
                     <p class="mb-4">
-                        לאורך שנים של עשייה במגזר הביטחוני, הציבורי והעסקי, ליוויתי אלפי עובדות ועובדים בתהליכי סיום עבודה, שינוי קריירה ופרישה, מתוך הבנה עמוקה של המורכבות הרגשית, המשפחתית והתעסוקתית שמביאה איתה תקופה זו.
+                        אני בוגרת שלושה תארים אקדמיים, חשבת שכר בכירה, בוגרת לימודי גרונטולוגיה ותכנון פרישה, מנחת קבוצות ודירקטורית מוסמכת. השילוב הייחודי הזה מאפשר לי להעניק מענה שלם ומדויק — מקצועי, פיננסי, רגשי ואנושי — לכל אדם ולכל ארגון שנמצא בצומת של שינוי, פרישה או תהליך של קבלת החלטות קריטיות להמשך הדרך.
                     </p>
                     <p>
-                        הקמתי את “מוכנים לפרישה עם חוה שורץ שושני” מתוך שליחות – להפוך את תהליך הפרישה ממשבר להזדמנות. אני משלבת ידע גרונטולוגי, ניסיון ניהולי, כלים פרקטיים ורגישות אנושית, ומאמינה שלכל אדם מגיעה פרישה עם משמעות, בהירות ובחירה.
+                        היתרון הגדול שלי הוא היכולת לראות את התמונה המלאה — להבין גם את המורכבות הכלכלית וגם את ההיבטים האישיים והרגשיים של המעבר. אני משלבת ידע מקצועי, ניסיון ניהולי רב-שנים, הבנה עמוקה בעולמות העבודה, לצד רגישות ויכולת אמיתית להקשיב, לכוון ולתת כלים מעשיים ליצירת עתיד מדויק, נכון וטוב יותר.
                     </p>
                 </div>
             </div>
@@ -479,7 +516,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Accordion functionality - UPDATED
+            // Add initial page-enter animation
+            document.body.classList.add('page-enter');
+
+            // Accordion functionality - UPDATED for smoother content animation
             const accordionHeaders = document.querySelectorAll('.accordion-header');
 
             accordionHeaders.forEach(header => {
@@ -508,7 +548,7 @@
                 });
             });
 
-            // Scroll Reveal Animation
+            // Scroll Reveal Animation - Modified to reset on scroll out of view
             const revealElements = document.querySelectorAll('.scroll-reveal');
             const observerOptions = {
                 root: null, /* viewport */
@@ -520,13 +560,27 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target); /* Stop observing once visible */
+                    } else {
+                        // Remove is-visible class when element is not intersecting (e.g., scrolled out of view)
+                        entry.target.classList.remove('is-visible');
                     }
                 });
             }, observerOptions);
 
             revealElements.forEach(element => {
                 observer.observe(element);
+            });
+
+            // Handle page transitions for "resetting" effects
+            window.addEventListener('beforeunload', () => {
+                document.body.classList.remove('page-enter');
+                document.body.classList.add('page-exit');
+            });
+
+            window.addEventListener('load', () => {
+                // Ensure page-exit is removed if navigating back to the same page
+                document.body.classList.remove('page-exit');
+                document.body.classList.add('page-enter');
             });
         });
     </script>
